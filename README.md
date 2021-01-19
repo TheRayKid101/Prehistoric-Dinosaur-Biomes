@@ -10,7 +10,8 @@ The Prehistoric Dimension is a mod being actively developed on by TheRayKid101, 
 
 **Important Information**
 
-I would like to note that I'm not the original creator of this mod. This was a mod I was fascinated over when I was a kid and I never was able to play it. The original mod is called Pre-Historic Mod it was for Minecraft 1.4.2. I have simply updated the mod for the newer versions of Minecraft and I am open to any suggestions and recommendations of what should become of this mod in the future. I have added features that were not contained in the original mod and modified others. This mod is still in work in progress and I hope to continue this project well into the future. The video below was what I saw when I first witnessed this mod all those years ago and I still love it to this day. Although the video is old, it still is practically accurate for this mod I have resurrected. 
+I would like to note that I'm not the original creator of this mod. This was a mod I was fascinated over when I was a kid and I never was able to play it. The original mod is called Pre-Historic Mod it was for Minecraft 1.4.2. I have simply updated the mod for the newer versions of Minecraft and I am open to any suggestions and recommendations of what should become of this mod in the future. I have added features that were not contained in the original mod and modified others. This mod is still in work in progress and I hope to continue this project well into the future. The video [Minecraft PRE-HISTORIC MOD Spotlight - Jurassic Park! (Minecraft Dinosaur Mod Showcase)
+](https://www.youtube.com/watch?v=dj2WKT4iYzQ) was what I saw when I first witnessed this mod all those years ago and I still love it to this day. Although the video is old, it still is practically accurate for this mod I have resurrected. 
 
 ## Project Owner
 
