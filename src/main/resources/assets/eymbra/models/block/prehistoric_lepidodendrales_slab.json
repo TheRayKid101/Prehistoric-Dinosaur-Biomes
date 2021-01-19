@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "eymbra:block/prehistoric_lepidodendrales_planks",
+    "top": "eymbra:block/prehistoric_lepidodendrales_planks",
+    "side": "eymbra:block/prehistoric_lepidodendrales_planks"
+  }
+}

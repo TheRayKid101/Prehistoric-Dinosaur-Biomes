@@ -1,0 +1,9 @@
+{
+	"replace": false,
+	"values": [
+		"#c:prehistoric_lepidodendrales_logs",
+		"#c:prehistoric_mangrove_logs",
+		"#c:prehistoric_darkwood_logs",
+		"#c:prehistoric_calamites_logs"
+	]
+}

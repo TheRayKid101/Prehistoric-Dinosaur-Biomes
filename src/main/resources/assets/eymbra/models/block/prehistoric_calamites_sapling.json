@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:block/cross",
+	"textures": {
+		"cross": "eymbra:block/prehistoric_calamites_sapling"
+	}
+}

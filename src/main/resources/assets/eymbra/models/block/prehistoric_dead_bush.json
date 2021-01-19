@@ -1,0 +1,6 @@
+{
+	"parent": "block/cross",
+	"textures": {
+		"cross": "eymbra:block/prehistoric_dead_bush"
+	}
+}

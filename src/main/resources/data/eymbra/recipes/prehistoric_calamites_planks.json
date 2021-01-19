@@ -1,0 +1,13 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"group": "planks",
+	"ingredients": [
+		{
+			"tag": "c:prehistoric_calamites_logs"
+		}
+	],
+	"result": {
+		"item": "eymbra:prehistoric_calamites_planks",
+		"count": 4
+	}
+}

@@ -1,0 +1,25 @@
+{
+	"type": "minecraft:crafting_shaped",
+	"pattern": [
+		"XDX",
+		"RLR",
+		"XRX"
+	],
+	"key": {
+		"X": {
+			"item": "minecraft:iron_ingot"
+		},
+		"R": {
+			"item": "minecraft:redstone"
+		},
+		"L": {
+			"item": "minecraft:lever"
+		},
+		"D": {
+			"item": "minecraft:diamond"
+		}
+	},
+	"result": {
+		"item": "eymbra:prehistoric_time_box"
+	}
+}

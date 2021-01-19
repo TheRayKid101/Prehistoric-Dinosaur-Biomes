@@ -1,0 +1,24 @@
+{
+
+	"variants":  {
+
+	"snowy=false":  [
+
+	{
+	"model": "eymbra:block/prehistoric_grass"
+},
+	{
+	"model": "eymbra:block/prehistoric_grass",	"y": 90
+},
+	{
+	"model": "eymbra:block/prehistoric_grass",	"y": 180
+},
+	{
+	"model": "eymbra:block/prehistoric_grass",	"y": 270
+}
+],
+	"snowy=true":  {
+	"model": "eymbra:block/prehistoric_grass_snow"
+}
+}
+}

@@ -1,0 +1,9 @@
+{
+	"type": "minecraft:smelting",
+	"ingredient": {
+		"item": "eymbra:prehistoric_raw_dodo"
+	},
+	"result": "eymbra:prehistoric_cooked_dodo",
+	"experience": 0.35,
+	"cookingtime": 200
+}

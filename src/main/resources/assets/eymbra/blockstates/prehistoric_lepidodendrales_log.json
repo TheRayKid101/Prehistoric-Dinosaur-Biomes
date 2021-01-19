@@ -1,0 +1,15 @@
+{
+
+	"variants":  {
+
+	"axis=y":  {
+	"model": "eymbra:block/prehistoric_lepidodendrales_log"
+},
+	"axis=z":  {
+	"model": "eymbra:block/prehistoric_lepidodendrales_log",	"x": 90
+},
+	"axis=x":  {
+	"model": "eymbra:block/prehistoric_lepidodendrales_log",	"x": 90,	"y": 90
+}
+}
+}

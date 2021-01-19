@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "eymbra:block/prehistoric_darkwood_slab"
+    },
+    "type=double": {
+      "model": "eymbra:block/prehistoric_darkwood_planks"
+    },
+    "type=top": {
+      "model": "eymbra:block/prehistoric_darkwood_slab_top"
+    }
+  }
+}

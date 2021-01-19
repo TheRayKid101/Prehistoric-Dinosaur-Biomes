@@ -1,0 +1,9 @@
+{
+	"parent": "block/cube_bottom_top",
+	"textures": {
+		"particle": "eymbra:block/prehistoric_darkwood_log_side",
+		"bottom": "eymbra:block/prehistoric_darkwood_log_top",
+		"top": "eymbra:block/prehistoric_darkwood_log_top",
+		"side": "eymbra:block/prehistoric_darkwood_log_side"
+	}
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "eymbra:block/prehistoric_lepidodendrales_slab"
+    },
+    "type=double": {
+      "model": "eymbra:block/prehistoric_lepidodendrales_planks"
+    },
+    "type=top": {
+      "model": "eymbra:block/prehistoric_lepidodendrales_slab_top"
+    }
+  }
+}

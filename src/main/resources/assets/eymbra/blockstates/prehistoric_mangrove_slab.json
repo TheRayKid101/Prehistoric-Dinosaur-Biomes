@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "eymbra:block/prehistoric_mangrove_slab"
+    },
+    "type=double": {
+      "model": "eymbra:block/prehistoric_mangrove_planks"
+    },
+    "type=top": {
+      "model": "eymbra:block/prehistoric_mangrove_slab_top"
+    }
+  }
+}

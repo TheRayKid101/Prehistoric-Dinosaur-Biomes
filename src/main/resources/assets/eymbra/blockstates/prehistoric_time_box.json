@@ -1,0 +1,10 @@
+{
+	"variants": {
+		"lit=false": {
+			"model": "eymbra:block/prehistoric_time_box"
+		},
+		"lit=true": {
+			"model": "eymbra:block/prehistoric_time_box_on"
+		}
+	}
+}

@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:item/generated",
+	"textures": {
+		"layer0": "eymbra:item/prehistoric_cooked_hadrosaur"
+	}
+}

@@ -1,0 +1,10 @@
+public static final EntityType<EntityTarSlime> TARSLIME = setup(
+			"tarSlime", 
+			EntityType.Builder.<EntityTarSlime>create(EntityTarSlime::new, EntityClassification.CREATURE).size(0.6F, 1.7F));
+
+RenderingRegistry.registerEntityRenderingHandler(ModEntities.TARSLIME, new IRenderFactory<EntityTarSlime>() {
+			@Override
+			public EntityRenderer<? super EntityTarSlime> createRenderFor(EntityRendererManager manager) {
+				return new RenderTarSlime(manager);
+			}
+		});

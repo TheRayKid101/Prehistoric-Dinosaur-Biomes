@@ -1,0 +1,13 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"group": "planks",
+	"ingredients": [
+		{
+			"tag": "c:prehistoric_lepidodendrales_logs"
+		}
+	],
+	"result": {
+		"item": "eymbra:prehistoric_lepidodendrales_planks",
+		"count": 4
+	}
+}

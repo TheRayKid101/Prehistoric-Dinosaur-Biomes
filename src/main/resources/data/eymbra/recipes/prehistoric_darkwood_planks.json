@@ -1,0 +1,13 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"group": "planks",
+	"ingredients": [
+		{
+			"tag": "c:prehistoric_darkwood_logs"
+		}
+	],
+	"result": {
+		"item": "eymbra:prehistoric_darkwood_planks",
+		"count": 4
+	}
+}

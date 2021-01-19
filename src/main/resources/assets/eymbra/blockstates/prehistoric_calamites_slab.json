@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "eymbra:block/prehistoric_calamites_slab"
+    },
+    "type=double": {
+      "model": "eymbra:block/prehistoric_calamites_planks"
+    },
+    "type=top": {
+      "model": "eymbra:block/prehistoric_calamites_slab_top"
+    }
+  }
+}

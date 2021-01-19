@@ -1,0 +1,16 @@
+[
+{
+	"modid": "ThePreHistoricMod",
+	"name": "The Pre-Historic Mod",
+	"description": "Travel Back in Time to find a world with inivative terrain generation, amazing creature, intuative blocks and Much More!",
+	"version": "Beta 1.5.0",
+	"credits": "Go Subscribe to 'www.youtube.com/ProPercivalalb' to keep up to date with the lastest infomation.",
+	"authors": ["ProPercivalalb"],
+	"logoFile": "",
+	"url": "http://www.minecraftforum.net/topic/1513582-PreHistoric/",
+	"updateUrl": "",
+	"parent": "",
+	"screenshots": [],
+	"dependencies": []
+}
+]

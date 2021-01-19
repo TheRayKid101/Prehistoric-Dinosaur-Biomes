@@ -1,0 +1,108 @@
+{
+	"music.prehistoric.rainforest": {
+		"category": "ambient",
+		"sounds": [
+			"eymbra:rainforest_loop"
+		]
+	},
+	"music.prehistoric.snow_mountain": {
+		"category": "ambient",
+		"sounds": [
+			"eymbra:cold_wind"
+		]
+	},
+	"additional.prehistoric.rainforest": {
+		"category": "ambient",
+		"sounds": [
+			"eymbra:thunder1",
+			"eymbra:thunder2",
+			"eymbra:thunder3",
+			"eymbra:thunder4",
+			"eymbra:thunder5",
+			"eymbra:thunder6"
+		]
+	},
+	"red_desert": {
+		"category": "ambient",
+		"sounds": [
+			"eymbra:red_desert"
+		]
+	},
+	"bog": {
+		"category": "ambient",
+		"sounds": [
+			"eymbra:bog"
+		]
+	},
+	"time_machine_open": {
+		"category": "ambient",
+		"sounds": [
+			"eymbra:time_machine_open"
+		]
+	},
+	"time_machine_close": {
+		"category": "ambient",
+		"sounds": [
+			"eymbra:time_machine_close"
+		]
+	},
+	"ambient.hadrosaur.hadrosaur_ambient": {
+		"category": "neutral",
+		"sounds": [
+			"eymbra:hadrosaur/hadrosaur_ambient"
+		]
+	},
+	"ambient.hadrosaur.hadrosaur_hurt": {
+		"category": "neutral",
+		"sounds": [
+			"eymbra:hadrosaur/hadrosaur_hurt"
+		]
+	},
+	"ambient.hadrosaur.hadrosaur_death": {
+		"category": "neutral",
+		"sounds": [
+			"eymbra:hadrosaur/hadrosaur_death"
+		]
+	},
+	"ambient.pachycepalosaurus.pachycepalosaurus_ambient": {
+		"category": "neutral",
+		"sounds": [
+			"eymbra:pachycepalosaurus/pachycepalosaurus_ambient",
+			"eymbra:pachycepalosaurus/pachycepalosaurus_ambient_2",
+			"eymbra:pachycepalosaurus/pachycepalosaurus_ambient_3"
+		]
+	},
+	"ambient.pachycepalosaurus.pachycepalosaurus_hurt": {
+		"category": "neutral",
+		"sounds": [
+			"eymbra:pachycepalosaurus/pachycepalosaurus_hurt",
+			"eymbra:pachycepalosaurus/pachycepalosaurus_hurt_2"
+		]
+	},
+	"ambient.pachycepalosaurus.pachycepalosaurus_death": {
+		"category": "neutral",
+		"sounds": [
+			"eymbra:pachycepalosaurus/pachycepalosaurus_death"
+		]
+	},
+	"ambient.ankylosaurus.ankylosaurus_ambient": {
+		"category": "neutral",
+		"sounds": [
+			"eymbra:ankylosaurus/ankylosaurus_living1",
+			"eymbra:ankylosaurus/ankylosaurus_living2",
+			"eymbra:ankylosaurus/ankylosaurus_living3"
+		]
+	},
+	"ambient.ankylosaurus.ankylosaurus_hurt": {
+		"category": "neutral",
+		"sounds": [
+			"eymbra:ankylosaurus/ankylosaurus_hurt"
+		]
+	},
+	"ambient.ankylosaurus.ankylosaurus_death": {
+		"category": "neutral",
+		"sounds": [
+			"eymbra:ankylosaurus/ankylosaurus_death"
+		]
+	}
+}

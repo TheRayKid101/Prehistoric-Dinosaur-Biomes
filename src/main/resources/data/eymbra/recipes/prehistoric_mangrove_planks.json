@@ -1,0 +1,13 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"group": "planks",
+	"ingredients": [
+		{
+			"tag": "c:prehistoric_mangrove_logs"
+		}
+	],
+	"result": {
+		"item": "eymbra:prehistoric_mangrove_planks",
+		"count": 4
+	}
+}

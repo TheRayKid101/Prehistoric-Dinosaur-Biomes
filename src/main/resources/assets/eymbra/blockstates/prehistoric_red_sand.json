@@ -1,0 +1,21 @@
+{
+	"variants": {
+		"": [
+			{
+				"model": "eymbra:block/prehistoric_red_sand"
+			},
+			{
+				"model": "eymbra:block/prehistoric_red_sand",
+				"y": 90
+			},
+			{
+				"model": "eymbra:block/prehistoric_red_sand",
+				"y": 180
+			},
+			{
+				"model": "eymbra:block/prehistoric_red_sand",
+				"y": 270
+			}
+		]
+	}
+}

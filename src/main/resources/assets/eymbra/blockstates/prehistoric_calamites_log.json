@@ -1,0 +1,16 @@
+{
+	"variants": {
+		"axis=y": {
+			"model": "eymbra:block/prehistoric_calamites_log"
+		},
+		"axis=z": {
+			"model": "eymbra:block/prehistoric_calamites_log",
+			"x": 90
+		},
+		"axis=x": {
+			"model": "eymbra:block/prehistoric_calamites_log",
+			"x": 90,
+			"y": 90
+		}
+	}
+}

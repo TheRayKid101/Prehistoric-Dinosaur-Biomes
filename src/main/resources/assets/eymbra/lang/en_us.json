@@ -1,0 +1,66 @@
+{
+	"biome.eymbra.rainforest": "Rainforest",
+	
+	"block.eymbra.prehistoric_grass_block": "Grass Block",
+	"block.eymbra.prehistoric_dirt": "Dirt Block",
+	
+	"block.eymbra.prehistoric_portal": "Prehistoric Portal",
+	
+	"block.eymbra.prehistoric_lepidodendrales_log": "Lepidodendrales Log",
+	"block.eymbra.prehistoric_mangrove_log": "Mangrove Log",
+	"block.eymbra.prehistoric_darkwood_log": "Darkwood Log",
+	"block.eymbra.prehistoric_calamites_log": "Calamites Log",
+	
+	"block.eymbra.prehistoric_lepidodendrales_planks": "Lepidodendrales Planks",
+	"block.eymbra.prehistoric_mangrove_planks": "Mangrove Planks",
+	"block.eymbra.prehistoric_darkwood_planks": "Darkwood Planks",
+	"block.eymbra.prehistoric_calamites_planks": "Calamites Planks",
+	
+	"block.eymbra.prehistoric_lepidodendrales_slab": "Lepidodendrales Slab",
+	"block.eymbra.prehistoric_mangrove_slab": "Mangrove Slab",
+	"block.eymbra.prehistoric_darkwood_slab": "Darkwood Slab",
+	"block.eymbra.prehistoric_calamites_slab": "Calamites Slab",
+	
+	"block.eymbra.prehistoric_lepidodendrales_stairs": "Lepidodendrales Stairs",
+	"block.eymbra.prehistoric_mangrove_stairs": "Mangrove Stairs",
+	"block.eymbra.prehistoric_darkwood_stairs": "Darkwood Stairs",
+	"block.eymbra.prehistoric_calamites_stairs": "Calamites Stairs",
+	
+	"block.eymbra.prehistoric_lepidodendrales_leaves": "Lepidodendrales Leaves",
+	"block.eymbra.prehistoric_mangrove_leaves": "Mangrove Leaves",
+	"block.eymbra.prehistoric_darkwood_leaves": "Darkwood Leaves",
+	"block.eymbra.prehistoric_calamites_leaves": "Calamites Leaves",
+	
+	"block.eymbra.prehistoric_lepidodendrales_sapling": "Lepidodendrales Sapling",
+	"block.eymbra.prehistoric_mangrove_sapling": "Mangrove Sapling",
+	"block.eymbra.prehistoric_darkwood_sapling": "Darkwood Sapling",
+	"block.eymbra.prehistoric_calamites_sapling": "Calamites Sapling",
+	
+	"block.eymbra.prehistoric_red_rock": "Red Rock",
+	"block.eymbra.prehistoric_red_sand": "Red Sediment",
+	
+	"block.eymbra.prehistoric_volcanic_rock": "Volcanic Rock",
+	
+	"block.eymbra.prehistoric_time_box": "Time Machine",
+	
+	"item.eymbra.ph_book": "The Book Of Crafting",
+	"item.eymbra.prehistoric_apple": "Apple",
+	"item.eymbra.prehistoric_ground_apple": "Ground Apple",
+	"item.eymbra.normal_ground_apple": "Ground Apple",
+	"item.eymbra.prehistoric_raw_hadrosaur": "Raw Hadrosaur",
+	"item.eymbra.prehistoric_cooked_hadrosaur": "Cooked Hadrosaur",
+	"item.eymbra.prehistoric_ammonite_shell": "Ammonite Shell",
+	"item.eymbra.prehistoric_dodo_egg": "Dodo Egg",
+	"item.eymbra.prehistoric_raptor_claw": "Raptor Claw",
+	"item.eymbra.prehistoric_claw_dagger": "Claw Dagger",
+	"item.eymbra.prehistoric_raw_dodo": "Raw Dodo",
+	"item.eymbra.prehistoric_cooked_dodo": "Cooked Dodo",
+	"item.eymbra.prehistoric_raw_ankylosaurus": "Raw Ankylosaurus",
+	"item.eymbra.prehistoric_cooked_ankylosaurus": "Cooked Ankylosaurus",
+	"item.eymbra.prehistoric_huge_dragonfly": "Huge Dragonfly",
+	
+	"item.eymbra.ph_book.reference": "Contains All Crafting Recipes",
+	"item.eymbra.ph_book.reference2": "From The Pre-Historic Mod",
+	
+	"itemGroup.eymbra.prehistoric": "Prehistoric Dinosaur Biomes"
+}
