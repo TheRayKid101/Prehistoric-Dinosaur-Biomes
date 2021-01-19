@@ -4,6 +4,7 @@
 build/
 out/
 classes/
+mod_dev/
 
 # eclipse
 
