@@ -1,5 +1,32 @@
-# Object file
-*.o
+# General use .gitignore for Minecraft modding.
 
-# Ada Library Information
-*.ali
+# Directories
+/.gradle/
+/build/
+/eclipse
+/run/
+/out/
+/bin/
+/build/
+/.idea/
+/.metadata/
+/libs/
+/classes/
+/.settings/
+
+# File Extensions
+*.psd
+*.iml
+*.ipr
+*.iws
+*.classpath
+*.project
+*.launch
+
+# Specific Files
+Thumbs.db
+
+.cache/
+
+# Mixin logs
+/logs/
