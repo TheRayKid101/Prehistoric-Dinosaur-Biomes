@@ -9,6 +9,7 @@ import net.minecraft.item.EggItem;
 import net.minecraft.item.FoodComponents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
@@ -33,8 +34,6 @@ public class EymbraItems {
 	public static final Item PREHISTORIC_MANGROVE_LEAVES;
 
 	public static final Item PREHISTORIC_RED_ROCK;
-
-	public static final Item RED_ROCK_SEDIMENT;
 
 	public static final Item VOLCANIC_ROCK;
 
@@ -83,7 +82,7 @@ public class EymbraItems {
 	public static final Item PREHISTORIC_RAW_HADROSAUR;
 
 	public static final Item PREHISTORIC_COOKED_HADROSAUR;
-	
+
 	public static final Item PREHISTORIC_AMMONITE_SHELL;
 
 	public static final Item PREHISTORIC_CLAW_DAGGER;
@@ -101,9 +100,15 @@ public class EymbraItems {
 	public static final Item PREHISTORIC_RAPTOR_CLAW;
 
 	public static final Item PREHISTORIC_HUGE_DRAGONFLY;
-	
+
 	public static final Item NORMAL_GROUND_APPLE;
-	
+
+	public static final Item PREHISTORIC_SHORT_BUSH;
+
+	public static final Item PREHISTORIC_DEAD_BUSH;
+
+	public static final Item PREHISTORIC_FARMLAND;
+
 	public static void init() {
 	}
 
@@ -117,7 +122,7 @@ public class EymbraItems {
 	}
 
 	private static Item register(BlockItem item) {
-		return register((Block) item.getBlock(), (Item) item);
+		return register(item.getBlock(), item);
 	}
 
 	protected static Item register(Block block, Item item) {
@@ -133,15 +138,15 @@ public class EymbraItems {
 			((BlockItem) item).appendBlocks(Item.BLOCK_ITEMS, item);
 		}
 
-		return (Item) Registry.register(Registry.ITEM, (Identifier) id, item);
+		return Registry.register(Registry.ITEM, id, item);
 	}
 
 	static {
 		PREHISTORIC_TIME_BOX = register(EymbraBlocks.PREHISTORIC_TIME_BOX, EymbraPrehistoric.PREHISTORIC_GROUP);
 		PREHISTORIC_GRASS_BLOCK = register(EymbraBlocks.PREHISTORIC_GRASS_BLOCK, EymbraPrehistoric.PREHISTORIC_GROUP);
 		PREHISTORIC_DIRT_BLOCK = register(EymbraBlocks.PREHISTORIC_DIRT_BLOCK, EymbraPrehistoric.PREHISTORIC_GROUP);
+		PREHISTORIC_FARMLAND = register(EymbraBlocks.PREHISTORIC_FARMLAND, EymbraPrehistoric.PREHISTORIC_GROUP);
 		PREHISTORIC_RED_ROCK = register(EymbraBlocks.PREHISTORIC_RED_ROCK, EymbraPrehistoric.PREHISTORIC_GROUP);
-		RED_ROCK_SEDIMENT = register(EymbraBlocks.RED_ROCK_SEDIMENT, EymbraPrehistoric.PREHISTORIC_GROUP);
 		VOLCANIC_ROCK = register(EymbraBlocks.VOLCANIC_ROCK, EymbraPrehistoric.PREHISTORIC_GROUP);
 
 		PREHISTORIC_CALAMITES_PLANKS = register(EymbraBlocks.PREHISTORIC_CALAMITES_PLANKS, EymbraPrehistoric.PREHISTORIC_GROUP);
@@ -175,7 +180,7 @@ public class EymbraItems {
 		PREHISTORIC_RAW_HADROSAUR = register("prehistoric_raw_hadrosaur", new Item((new Item.Settings()).group(ItemGroup.FOOD).food(EymbraFoodComponents.HADROSAUR)));
 		PREHISTORIC_COOKED_HADROSAUR = register("prehistoric_cooked_hadrosaur", new Item((new Item.Settings()).group(ItemGroup.FOOD).food(EymbraFoodComponents.COOKED_HADROSAUR)));
 		PREHISTORIC_AMMONITE_SHELL = register("prehistoric_ammonite_shell", new Item((new Item.Settings()).group(ItemGroup.MATERIALS)));
-		PREHISTORIC_DODO_EGG = register((String)"prehistoric_dodo_egg", (Item)(new EggItem((new Item.Settings()).maxCount(16).group(ItemGroup.MATERIALS))));
+		PREHISTORIC_DODO_EGG = register("prehistoric_dodo_egg", (new EggItem((new Item.Settings()).maxCount(16).group(ItemGroup.MATERIALS))));
 		PREHISTORIC_RAPTOR_CLAW = register("prehistoric_raptor_claw", new Item((new Item.Settings()).group(ItemGroup.MISC)));
 		PREHISTORIC_CLAW_DAGGER = register("prehistoric_claw_dagger", new Item((new Item.Settings()).group(ItemGroup.MISC)));
 		PREHISTORIC_RAW_DODO = register("prehistoric_raw_dodo", new Item((new Item.Settings()).group(ItemGroup.FOOD).food(FoodComponents.CHICKEN)));
@@ -183,11 +188,18 @@ public class EymbraItems {
 		PREHISTORIC_RAW_ANKYLOSAURUS = register("prehistoric_raw_ankylosaurus", new Item((new Item.Settings()).group(ItemGroup.FOOD).food(EymbraFoodComponents.AKYLOSAURUS)));
 		PREHISTORIC_COOKED_ANKYLOSAURUS = register("prehistoric_cooked_ankylosaurus", new Item((new Item.Settings()).group(ItemGroup.FOOD).food(EymbraFoodComponents.COOKED_AKYLOSAURUS)));
 		PREHISTORIC_HUGE_DRAGONFLY = register("prehistoric_huge_dragonfly", new Item((new Item.Settings()).group(ItemGroup.MISC)));
-		PREHISTORIC_REFERENCE_BOOK = register((String) "ph_book", (Item) (new PrehistoricReferenceBookItem((new Item.Settings()).group(ItemGroup.MISC).rarity(Rarity.UNCOMMON))));
+		PREHISTORIC_REFERENCE_BOOK = register("ph_book", (new PrehistoricReferenceBookItem((new Item.Settings()).group(ItemGroup.MISC).rarity(Rarity.UNCOMMON))));
 
 		PREHISTORIC_CALAMITES_SAPLING = register(EymbraBlocks.PREHISTORIC_CALAMITES_SAPLING, EymbraPrehistoric.PREHISTORIC_GROUP);
 		PREHISTORIC_LEPIDODENDRALES_SAPLING = register(EymbraBlocks.PREHISTORIC_LEPIDODENDRALES_SAPLING, EymbraPrehistoric.PREHISTORIC_GROUP);
 		PREHISTORIC_DARKWOOD_SAPLING = register(EymbraBlocks.PREHISTORIC_DARKWOOD_SAPLING, EymbraPrehistoric.PREHISTORIC_GROUP);
 		PREHISTORIC_MANGROVE_SAPLING = register(EymbraBlocks.PREHISTORIC_MANGROVE_SAPLING, EymbraPrehistoric.PREHISTORIC_GROUP);
+
+		PREHISTORIC_SHORT_BUSH = register(EymbraBlocks.PREHISTORIC_SHORT_BUSH, EymbraPrehistoric.PREHISTORIC_GROUP);
+		PREHISTORIC_DEAD_BUSH = register(EymbraBlocks.PREHISTORIC_DEAD_BUSH, EymbraPrehistoric.PREHISTORIC_GROUP);
+
+		// Any hoe item would do for this modifier
+		((IEymbraTiltedBlocks) Items.WOODEN_HOE).addTiltedBlock(EymbraBlocks.PREHISTORIC_GRASS_BLOCK, EymbraBlocks.PREHISTORIC_FARMLAND_STATE);
+		((IEymbraTiltedBlocks) Items.WOODEN_HOE).addTiltedBlock(EymbraBlocks.PREHISTORIC_DIRT_BLOCK, EymbraBlocks.PREHISTORIC_FARMLAND_STATE);
 	}
 }

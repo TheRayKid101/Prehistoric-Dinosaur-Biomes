@@ -12,7 +12,6 @@ import net.minecraft.block.LeavesBlock;
 import net.minecraft.block.Material;
 import net.minecraft.block.MaterialColor;
 import net.minecraft.block.PillarBlock;
-import net.minecraft.block.SandBlock;
 import net.minecraft.block.SlabBlock;
 import net.minecraft.entity.EntityType;
 import net.minecraft.sound.BlockSoundGroup;
@@ -42,11 +41,11 @@ public class EymbraBlocks {
 
 	public static final Block PREHISTORIC_MANGROVE_SAPLING;
 
-	public static final Block PREHISTORIC_LEPIDODENDRALES_SHORT_BUSH;
-	public static final BlockState PREHISTORIC_LEPIDODENDRALES_SHORT_BUSH_STATE;
+	public static final Block PREHISTORIC_SHORT_BUSH;
+	public static final BlockState PREHISTORIC_SHORT_BUSH_STATE;
 
-	public static final Block PREHISTORIC_LEPIDODENDRALES_DEAD_BUSH;
-	public static final BlockState PREHISTORIC_LEPIDODENDRALES_DEAD_BUSH_STATE;
+	public static final Block PREHISTORIC_DEAD_BUSH;
+	public static final BlockState PREHISTORIC_DEAD_BUSH_STATE;
 
 	public static final Block PREHISTORIC_MANGROVE_LOG;
 	public static final BlockState PREHISTORIC_MANGROVE_LOG_STATE;
@@ -59,70 +58,70 @@ public class EymbraBlocks {
 
 	public static final Block PREHISTORIC_RED_ROCK;
 	public static final BlockState PREHISTORIC_RED_ROCK_STATE;
-	
-	public static final Block RED_ROCK_SEDIMENT;
-	public static final BlockState RED_ROCK_SEDIMENT_STATE;
-	
+
 	public static final Block VOLCANIC_ROCK;
 	public static final BlockState VOLCANIC_ROCK_STATE;
-	
+
 	public static final Block PREHISTORIC_DARKWOOD_LOG;
 	public static final BlockState PREHISTORIC_DARKWOOD_LOG_STATE;
 
 	public static final Block PREHISTORIC_DARKWOOD_LEAVES;
 	public static final BlockState PREHISTORIC_DARKWOOD_LEAVES_STATE;
-	
+
 	public static final Block PREHISTORIC_DARKWOOD_SAPLING;
-	
+
 	public static final Block PREHISTORIC_LEPIDODENDRALES_PLANKS;
 	public static final BlockState PREHISTORIC_LEPIDODENDRALES_PLANKS_STATE;
-	
+
 	public static final Block PREHISTORIC_MANGROVE_PLANKS;
 	public static final BlockState PREHISTORIC_MANGROVE_PLANKS_STATE;
-	
+
 	public static final Block PREHISTORIC_DARKWOOD_PLANKS;
 	public static final BlockState PREHISTORIC_DARKWOOD_PLANKS_STATE;
-	
+
 	public static final Block PREHISTORIC_LEPIDODENDRALES_STAIRS;
 	public static final BlockState PREHISTORIC_LEPIDODENDRALES_STAIRS_STATE;
-	
+
 	public static final Block PREHISTORIC_MANGROVE_STAIRS;
 	public static final BlockState PREHISTORIC_MANGROVE_STAIRS_STATE;
-	
+
 	public static final Block PREHISTORIC_DARKWOOD_STAIRS;
 	public static final BlockState PREHISTORIC_DARKWOOD_STAIRS_STATE;
-	
+
 	public static final Block PREHISTORIC_LEPIDODENDRALES_SLAB;
 	public static final BlockState PREHISTORIC_LEPIDODENDRALES_SLAB_STATE;
-	
+
 	public static final Block PREHISTORIC_MANGROVE_SLAB;
 	public static final BlockState PREHISTORIC_MANGROVE_SLAB_STATE;
-	
+
 	public static final Block PREHISTORIC_DARKWOOD_SLAB;
 	public static final BlockState PREHISTORIC_DARKWOOD_SLAB_STATE;
-	
+
 	public static final Block PREHISTORIC_CALAMITES_LOG;
 	public static final BlockState PREHISTORIC_CALAMITES_LOG_STATE;
-	
+
 	public static final Block PREHISTORIC_CALAMITES_PLANKS;
 	public static final BlockState PREHISTORIC_CALAMITES_PLANKS_STATE;
-	
+
 	public static final Block PREHISTORIC_CALAMITES_STAIRS;
 	public static final BlockState PREHISTORIC_CALAMITES_STAIRS_STATE;
-	
+
 	public static final Block PREHISTORIC_CALAMITES_SLAB;
 	public static final BlockState PREHISTORIC_CALAMITES_SLAB_STATE;
-	
+
 	public static final Block PREHISTORIC_CALAMITES_LEAVES;
 	public static final BlockState PREHISTORIC_CALAMITES_LEAVES_STATE;
-	
+
 	public static final Block PREHISTORIC_CALAMITES_SAPLING;
-	
+
+	public static final Block PREHISTORIC_FARMLAND;
+	public static final BlockState PREHISTORIC_FARMLAND_STATE;
+
 	public static void init() {
 	}
 
 	private static Block register(String id, Block block) {
-		return (Block) Registry.register(Registry.BLOCK, new Identifier(EymbraPrehistoric.MODID, id), block);
+		return Registry.register(Registry.BLOCK, new Identifier(EymbraPrehistoric.MODID, id), block);
 	}
 
 	private static PillarBlock createLogBlock(MaterialColor topMaterialColor, MaterialColor sideMaterialColor) {
@@ -133,6 +132,14 @@ public class EymbraBlocks {
 
 	private static LeavesBlock createLeavesBlock() {
 		return new LeavesBlock(AbstractBlock.Settings.of(Material.LEAVES).strength(0.2F).ticksRandomly().sounds(BlockSoundGroup.GRASS).nonOpaque().allowsSpawning(EymbraBlocks::canSpawnOnLeaves).suffocates(EymbraBlocks::never).blockVision(EymbraBlocks::never));
+	}
+
+	/**
+	 * A shortcut to always return {@code true} a context predicate, used as
+	 * {@code settings.solidBlock(Blocks::always)}.
+	 */
+	private static boolean always(BlockState state, BlockView world, BlockPos pos) {
+		return true;
 	}
 
 	/**
@@ -167,11 +174,11 @@ public class EymbraBlocks {
 
 		PREHISTORIC_MANGROVE_SAPLING = register("prehistoric_mangrove_sapling", new ModifiedSaplingBlock(new MangroveSaplingGenerator(), AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS)));
 
-		PREHISTORIC_LEPIDODENDRALES_SHORT_BUSH = register("prehistoric_short_bush", new ModifiablePlantBlock(AbstractBlock.Settings.of(Material.REPLACEABLE_PLANT).noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS)));
-		PREHISTORIC_LEPIDODENDRALES_SHORT_BUSH_STATE = PREHISTORIC_LEPIDODENDRALES_SHORT_BUSH.getDefaultState();
+		PREHISTORIC_SHORT_BUSH = register("prehistoric_short_bush", new ModifiablePlantBlock(AbstractBlock.Settings.of(Material.REPLACEABLE_PLANT).noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS)));
+		PREHISTORIC_SHORT_BUSH_STATE = PREHISTORIC_SHORT_BUSH.getDefaultState();
 
-		PREHISTORIC_LEPIDODENDRALES_DEAD_BUSH = register("prehistoric_dead_bush", new ModifiablePlantBlock(AbstractBlock.Settings.of(Material.REPLACEABLE_PLANT).noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS)));
-		PREHISTORIC_LEPIDODENDRALES_DEAD_BUSH_STATE = PREHISTORIC_LEPIDODENDRALES_DEAD_BUSH.getDefaultState();
+		PREHISTORIC_DEAD_BUSH = register("prehistoric_dead_bush", new ModifiablePlantBlock(AbstractBlock.Settings.of(Material.REPLACEABLE_PLANT).noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS)));
+		PREHISTORIC_DEAD_BUSH_STATE = PREHISTORIC_DEAD_BUSH.getDefaultState();
 
 		PREHISTORIC_MANGROVE_LOG = register("prehistoric_mangrove_log", createLogBlock(MaterialColor.WOOD, MaterialColor.SPRUCE));
 		PREHISTORIC_MANGROVE_LOG_STATE = PREHISTORIC_MANGROVE_LOG.getDefaultState();
@@ -186,9 +193,6 @@ public class EymbraBlocks {
 
 		PREHISTORIC_RED_ROCK = register("prehistoric_red_rock", new Block(AbstractBlock.Settings.of(Material.STONE, MaterialColor.RED).requiresTool().strength(1.5F, 6.0F)));
 		PREHISTORIC_RED_ROCK_STATE = PREHISTORIC_RED_ROCK.getDefaultState();
-
-		RED_ROCK_SEDIMENT = register("prehistoric_red_sand", new SandBlock(0xFF0000, AbstractBlock.Settings.of(Material.AGGREGATE, MaterialColor.RED).strength(0.5F).sounds(BlockSoundGroup.SAND)));
-		RED_ROCK_SEDIMENT_STATE = RED_ROCK_SEDIMENT.getDefaultState();
 
 		VOLCANIC_ROCK = register("prehistoric_volcanic_rock", new Block(AbstractBlock.Settings.of(Material.STONE, MaterialColor.BLACK).requiresTool().strength(1.5F, 6.0F)));
 		VOLCANIC_ROCK_STATE = VOLCANIC_ROCK.getDefaultState();
@@ -244,5 +248,8 @@ public class EymbraBlocks {
 		PREHISTORIC_CALAMITES_LEAVES_STATE = PREHISTORIC_CALAMITES_LEAVES.getDefaultState();
 
 		PREHISTORIC_CALAMITES_SAPLING = register("prehistoric_calamites_sapling", new ModifiedSaplingBlock(new CalamitesSaplingGenerator(), AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS)));
+
+		PREHISTORIC_FARMLAND = register("prehistoric_farmland", new ModifiableFarmlandBlock(AbstractBlock.Settings.of(Material.SOIL).ticksRandomly().strength(0.6F).sounds(BlockSoundGroup.GRAVEL).blockVision(EymbraBlocks::always).suffocates(EymbraBlocks::always)));
+		PREHISTORIC_FARMLAND_STATE = PREHISTORIC_FARMLAND.getDefaultState();
 	}
 }

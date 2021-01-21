@@ -60,7 +60,7 @@ public class PachycepalosaurusEntity extends AnimalEntity {
 	}
 
 	public boolean canSpawn(WorldAccess world, SpawnReason spawnReason) {
-		return world.getBlockState(this.getBlockPos().down()).isOf(EymbraBlocks.PREHISTORIC_RED_ROCK) || world.getBlockState(this.getBlockPos().down()).isOf(EymbraBlocks.RED_ROCK_SEDIMENT);
+		return world.getBlockState(this.getBlockPos().down()).isOf(EymbraBlocks.PREHISTORIC_RED_ROCK) || world.getBlockState(this.getBlockPos().down()).isOf(EymbraBlocks.VOLCANIC_ROCK);
 	}
 
 	public boolean isBreedingItem(ItemStack stack) {

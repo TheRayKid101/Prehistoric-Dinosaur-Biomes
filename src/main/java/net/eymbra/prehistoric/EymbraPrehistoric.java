@@ -31,8 +31,8 @@ public class EymbraPrehistoric implements ModInitializer {
 		EymbraBiomes.init();
 		EymbraDimensions.init();
 		
-		BlockRenderLayerMap.INSTANCE.putBlock(EymbraBlocks.PREHISTORIC_LEPIDODENDRALES_SHORT_BUSH, RenderLayer.getCutout());
-		BlockRenderLayerMap.INSTANCE.putBlock(EymbraBlocks.PREHISTORIC_LEPIDODENDRALES_DEAD_BUSH, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(EymbraBlocks.PREHISTORIC_SHORT_BUSH, RenderLayer.getCutout());
+		BlockRenderLayerMap.INSTANCE.putBlock(EymbraBlocks.PREHISTORIC_DEAD_BUSH, RenderLayer.getCutout());
 		BlockRenderLayerMap.INSTANCE.putBlock(EymbraBlocks.PREHISTORIC_PORTAL_BLOCK, RenderLayer.getTranslucent());
 		
 		BlockRenderLayerMap.INSTANCE.putBlock(EymbraBlocks.PREHISTORIC_CALAMITES_LEAVES, RenderLayer.getCutoutMipped());

@@ -12,7 +12,8 @@
 		"SkyPropertiesMixin",
 		"TrunkPlacerTypeMixin",
 		"EntityMixin",
-		"ServerPlayerEntityMixin"
+		"ServerPlayerEntityMixin",
+		"HoeItemMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

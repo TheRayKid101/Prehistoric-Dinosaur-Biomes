@@ -1,0 +1,28 @@
+{
+	"variants": {
+		"moisture=0": {
+			"model": "eymbra:block/prehistoric_farmland"
+		},
+		"moisture=1": {
+			"model": "eymbra:block/prehistoric_farmland"
+		},
+		"moisture=2": {
+			"model": "eymbra:block/prehistoric_farmland"
+		},
+		"moisture=3": {
+			"model": "eymbra:block/prehistoric_farmland"
+		},
+		"moisture=4": {
+			"model": "eymbra:block/prehistoric_farmland"
+		},
+		"moisture=5": {
+			"model": "eymbra:block/prehistoric_farmland"
+		},
+		"moisture=6": {
+			"model": "eymbra:block/prehistoric_farmland"
+		},
+		"moisture=7": {
+			"model": "eymbra:block/prehistoric_farmland_moist"
+		}
+	}
+}

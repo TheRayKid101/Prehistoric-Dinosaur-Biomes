@@ -1,0 +1,7 @@
+{
+	"parent": "minecraft:block/template_farmland",
+	"textures": {
+		"dirt": "eymbra:block/prehistoric_dirt",
+		"top": "eymbra:block/prehistoric_farmland"
+	}
+}
