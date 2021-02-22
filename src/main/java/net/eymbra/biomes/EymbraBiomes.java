@@ -1,7 +1,6 @@
 package net.eymbra.biomes;
 
 import com.google.common.collect.ImmutableSet;
-
 import net.eymbra.blocks.EymbraBlocks;
 import net.eymbra.entities.EymbraEntities;
 import net.eymbra.features.EymbraDefaultFeatures;
@@ -63,9 +62,8 @@ public class EymbraBiomes {
 	public static void init() {
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private static <FC extends FeatureConfig> ConfiguredFeature<FC, ?> register(String id, ConfiguredFeature<FC, ?> configuredFeature) {
-		return (ConfiguredFeature) Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new Identifier(EymbraPrehistoric.MODID, id), configuredFeature);
+		return Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, new Identifier(EymbraPrehistoric.MODID, id), configuredFeature);
 	}
 
 	private static RegistryKey<Biome> register(String name) {
@@ -77,9 +75,8 @@ public class EymbraBiomes {
 		return biome;
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private static <SC extends SurfaceConfig> ConfiguredSurfaceBuilder<SC> register(String id, ConfiguredSurfaceBuilder<SC> configuredSurfaceBuilder) {
-		return (ConfiguredSurfaceBuilder) BuiltinRegistries.add(BuiltinRegistries.CONFIGURED_SURFACE_BUILDER, new Identifier(EymbraPrehistoric.MODID, id), configuredSurfaceBuilder);
+		return BuiltinRegistries.add(BuiltinRegistries.CONFIGURED_SURFACE_BUILDER, new Identifier(EymbraPrehistoric.MODID, id), configuredSurfaceBuilder);
 	}
 
 	private static Biome createRainforest(float depth, float scale, int hadrosaurWeight, int hadrosaurMaxGroupSize, int dragonflyMaxGroupSize) {
@@ -148,8 +145,8 @@ public class EymbraBiomes {
 	}
 
 	private static Biome createRedDesertFeatures(float depth, float scale, Builder builder) {
-		GenerationSettings.Builder builder2 = (new GenerationSettings.Builder()).surfaceBuilder(EymbraBiomes.PREHISTORIC_DESERT).structureFeature(ConfiguredStructureFeatures.NETHER_FOSSIL).feature(GenerationStep.Feature.SURFACE_STRUCTURES, EymbraBiomes.LAVA_BLOBS).feature(GenerationStep.Feature.SURFACE_STRUCTURES, EymbraBiomes.MAGMA_BLOBS).feature(GenerationStep.Feature.SURFACE_STRUCTURES, EymbraBiomes.BASALT_BLOBS)
-				.feature(GenerationStep.Feature.VEGETAL_DECORATION, EymbraBiomes.PATCH_FIRE).feature(GenerationStep.Feature.VEGETAL_DECORATION, EymbraBiomes.ORE_MAGMA);
+		GenerationSettings.Builder builder2 = (new GenerationSettings.Builder()).surfaceBuilder(EymbraBiomes.PREHISTORIC_DESERT).structureFeature(ConfiguredStructureFeatures.NETHER_FOSSIL).feature(GenerationStep.Feature.SURFACE_STRUCTURES, EymbraBiomes.LAVA_BLOBS).feature(GenerationStep.Feature.SURFACE_STRUCTURES, EymbraBiomes.MAGMA_BLOBS).feature(GenerationStep.Feature.SURFACE_STRUCTURES, EymbraBiomes.BASALT_BLOBS).feature(GenerationStep.Feature.VEGETAL_DECORATION, EymbraBiomes.PATCH_FIRE)
+				.feature(GenerationStep.Feature.VEGETAL_DECORATION, EymbraBiomes.ORE_MAGMA);
 		DefaultBiomeFeatures.addDefaultOres(builder2);
 		DefaultBiomeFeatures.addLandCarvers(builder2);
 		builder2.feature(GenerationStep.Feature.VEGETAL_DECORATION, ConfiguredFeatures.SPRING_LAVA);
@@ -266,13 +263,13 @@ public class EymbraBiomes {
 		builder2.feature(GenerationStep.Feature.VEGETAL_DECORATION, EymbraDefaultFeatures.PATCH_SHORT_BUSH);
 		DefaultBiomeFeatures.addLandCarvers(builder2);
 		DefaultBiomeFeatures.addDefaultLakes(builder2);
-		builder.spawn(SpawnGroup.AMBIENT, new SpawnSettings.SpawnEntry(EymbraEntities.DRAGONFLY, 10, 3, 6));
+		builder.spawn(SpawnGroup.AMBIENT, new SpawnSettings.SpawnEntry(EymbraEntities.DRAGONFLY, 5, 3, 6));
 		builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EymbraEntities.DODO, 6, 3, 6));
 		builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EymbraEntities.ANKYLOSAURUS, 6, 3, 6));
 		builder2.feature(GenerationStep.Feature.LOCAL_MODIFICATIONS, EymbraDefaultFeatures.ROCK_PILES);
-		return (new Biome.Builder()).precipitation(Biome.Precipitation.RAIN).category(Biome.Category.EXTREME_HILLS).depth(depth).scale(scale).temperature(0.8F).downfall(downfall).effects((new BiomeEffects.Builder()).loopSound(EymbraSoundEvents.AMBIENCE_PREHISTORIC_RAINFOREST).waterColor(3368550).waterFogColor(3368550).fogColor(329011).skyColor(39219).moodSound(BiomeMoodSound.CAVE).build()).spawnSettings(builder.build()).generationSettings(builder2.build()).build();
+		return (new Biome.Builder()).precipitation(Biome.Precipitation.RAIN).category(Biome.Category.EXTREME_HILLS).depth(depth).scale(scale).temperature(0.8F).downfall(downfall).effects((new BiomeEffects.Builder()).loopSound(EymbraSoundEvents.AMBIENCE_PREHISTORIC_RAINFOREST).waterColor(3368550).waterFogColor(3368550).fogColor(0x308753).skyColor(0x4ACE80).moodSound(BiomeMoodSound.CAVE).build()).spawnSettings(builder.build()).generationSettings(builder2.build()).build();
 	}
-	
+
 	static {
 		register(EymbraBiomes.RAINFOREST, EymbraBiomes.createRainforest(1.0F, 0.5F, 10, 5, 10));
 		register(EymbraBiomes.BOG, EymbraBiomes.createBog(-0.1F, 0.5F, 1, 2, 10));

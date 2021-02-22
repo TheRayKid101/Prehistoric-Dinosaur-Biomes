@@ -51,6 +51,7 @@ public class DodoEntity extends AnimalEntity {
 		this.setPathfindingPenalty(PathNodeType.WATER, 0.0F);
 	}
 
+	@Override
 	protected void initGoals() {
 		this.goalSelector.add(0, new SwimGoal(this));
 		this.goalSelector.add(1, new EscapeDangerGoal(this, 1.4D));
@@ -62,25 +63,27 @@ public class DodoEntity extends AnimalEntity {
 		this.goalSelector.add(7, new LookAroundGoal(this));
 	}
 
+	@Override
 	protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
 		return this.isBaby() ? dimensions.height * 0.85F : dimensions.height * 0.92F;
 	}
 
 	public static DefaultAttributeContainer.Builder createDodoAttributes() {
-		return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 4.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25D);
+		return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 4.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.10D);
 	}
 
+	@Override
 	public void tickMovement() {
 		super.tickMovement();
 		this.prevFlapProgress = this.flapProgress;
 		this.prevMaxWingDeviation = this.maxWingDeviation;
-		this.maxWingDeviation = (float) ((double) this.maxWingDeviation + (double) (this.onGround ? -1 : 4) * 0.3D);
+		this.maxWingDeviation = (float) (this.maxWingDeviation + (this.onGround ? -1 : 4) * 0.3D);
 		this.maxWingDeviation = MathHelper.clamp(this.maxWingDeviation, 0.0F, 1.0F);
 		if (!this.onGround && this.flapSpeed < 1.0F) {
 			this.flapSpeed = 1.0F;
 		}
 
-		this.flapSpeed = (float) ((double) this.flapSpeed * 0.9D);
+		this.flapSpeed = (float) (this.flapSpeed * 0.9D);
 		Vec3d vec3d = this.getVelocity();
 		if (!this.onGround && vec3d.y < 0.0D) {
 			this.setVelocity(vec3d.multiply(1.0D, 0.6D, 1.0D));
@@ -95,38 +98,47 @@ public class DodoEntity extends AnimalEntity {
 
 	}
 
+	@Override
 	public boolean handleFallDamage(float fallDistance, float damageMultiplier) {
 		return false;
 	}
 
+	@Override
 	protected SoundEvent getAmbientSound() {
 		return SoundEvents.ENTITY_CHICKEN_AMBIENT;
 	}
 
+	@Override
 	protected SoundEvent getHurtSound(DamageSource source) {
 		return SoundEvents.ENTITY_CHICKEN_HURT;
 	}
 
+	@Override
 	protected SoundEvent getDeathSound() {
 		return SoundEvents.ENTITY_CHICKEN_DEATH;
 	}
 
+	@Override
 	protected void playStepSound(BlockPos pos, BlockState state) {
 		this.playSound(SoundEvents.ENTITY_CHICKEN_STEP, 0.15F, 1.0F);
 	}
 
+	@Override
 	public DodoEntity createChild(ServerWorld serverWorld, PassiveEntity passiveEntity) {
-		return (DodoEntity) EymbraEntities.DODO.create(serverWorld);
+		return EymbraEntities.DODO.create(serverWorld);
 	}
 
+	@Override
 	public boolean isBreedingItem(ItemStack stack) {
 		return BREEDING_INGREDIENT.test(stack);
 	}
 
+	@Override
 	protected int getCurrentExperience(PlayerEntity player) {
 		return this.hasJockey() ? 10 : super.getCurrentExperience(player);
 	}
 
+	@Override
 	public void readCustomDataFromTag(CompoundTag tag) {
 		super.readCustomDataFromTag(tag);
 		this.jockey = tag.getBoolean("IsChickenJockey");
@@ -136,21 +148,24 @@ public class DodoEntity extends AnimalEntity {
 
 	}
 
+	@Override
 	public void writeCustomDataToTag(CompoundTag tag) {
 		super.writeCustomDataToTag(tag);
 		tag.putBoolean("IsChickenJockey", this.jockey);
 		tag.putInt("EggLayTime", this.eggLayTime);
 	}
 
+	@Override
 	public boolean canImmediatelyDespawn(double distanceSquared) {
 		return this.hasJockey();
 	}
 
+	@Override
 	public void updatePassengerPosition(Entity passenger) {
 		super.updatePassengerPosition(passenger);
 		float f = MathHelper.sin(this.bodyYaw * 0.017453292F);
 		float g = MathHelper.cos(this.bodyYaw * 0.017453292F);
-		passenger.updatePosition(this.getX() + (double) (0.1F * f), this.getBodyY(0.5D) + passenger.getHeightOffset() + 0.0D, this.getZ() - (double) (0.1F * g));
+		passenger.updatePosition(this.getX() + 0.1F * f, this.getBodyY(0.5D) + passenger.getHeightOffset() + 0.0D, this.getZ() - 0.1F * g);
 		if (passenger instanceof LivingEntity) {
 			((LivingEntity) passenger).bodyYaw = this.bodyYaw;
 		}

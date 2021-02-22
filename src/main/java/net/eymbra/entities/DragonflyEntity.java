@@ -6,6 +6,7 @@ import org.jetbrains.annotations.Nullable;
 
 import net.eymbra.blocks.EymbraBlocks;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityPose;
 import net.minecraft.entity.EntityType;
@@ -36,7 +37,7 @@ import net.minecraft.world.WorldAccess;
 
 public class DragonflyEntity extends AnimalEntity implements Flutterer {
 	public float tailState;
-	public int wingState;
+	public float wingState;
 	private boolean wingMovement;
 	private BlockPos pointOfAttraction;
 
@@ -50,6 +51,7 @@ public class DragonflyEntity extends AnimalEntity implements Flutterer {
 		this.setPathfindingPenalty(PathNodeType.FENCE, -1.0F);
 	}
 
+	@Override
 	protected void initGoals() {
 		this.goalSelector.add(2, new AnimalMateGoal(this, 1.0D));
 		this.goalSelector.add(3, new TemptGoal(this, 1.25D, Ingredient.fromTag(ItemTags.FLOWERS), false));
@@ -59,31 +61,34 @@ public class DragonflyEntity extends AnimalEntity implements Flutterer {
 	}
 
 	private boolean isWithinDistance(BlockPos pos, int distance) {
-		return pos.isWithinDistance(this.getBlockPos(), (double) distance);
+		return pos.isWithinDistance(this.getBlockPos(), distance);
 	}
 
 	@Override
 	public boolean canSpawn(WorldAccess world, SpawnReason spawnReason) {
 		return world.getBlockState(this.getBlockPos().down()).isOf(EymbraBlocks.PREHISTORIC_GRASS_BLOCK);
 	}
-	
+
 	class WanderGoal extends Goal {
 		WanderGoal() {
 			this.setControls(EnumSet.of(Goal.Control.MOVE));
 		}
 
+		@Override
 		public boolean canStart() {
 			return DragonflyEntity.this.navigation.isIdle() && DragonflyEntity.this.random.nextInt(10) == 0;
 		}
 
+		@Override
 		public boolean shouldContinue() {
 			return DragonflyEntity.this.navigation.isFollowingPath();
 		}
 
+		@Override
 		public void start() {
 			Vec3d vec3d = this.getRandomLocation();
 			if (vec3d != null) {
-				DragonflyEntity.this.navigation.startMovingAlong(DragonflyEntity.this.navigation.findPathTo((BlockPos) (new BlockPos(vec3d)), 1), 1.0D);
+				DragonflyEntity.this.navigation.startMovingAlong(DragonflyEntity.this.navigation.findPathTo((new BlockPos(vec3d)), 1), 1.0D);
 			}
 		}
 
@@ -102,8 +107,10 @@ public class DragonflyEntity extends AnimalEntity implements Flutterer {
 		}
 	}
 
+	@Override
 	protected EntityNavigation createNavigation(World world) {
 		BirdNavigation birdNavigation = new BirdNavigation(this, world) {
+			@Override
 			public boolean isValidPosition(BlockPos pos) {
 				return !this.world.getBlockState(pos.down()).isAir();
 			}
@@ -115,28 +122,33 @@ public class DragonflyEntity extends AnimalEntity implements Flutterer {
 		return birdNavigation;
 	}
 
+	@Override
 	public boolean canImmediatelyDespawn(double distanceSquared) {
 		return false;
 	}
 
 	@Override
 	public void tick() {
-		this.wingMovement = !this.onGround;
+		this.wingMovement = this.world.getBlockState(getBlockPos().down()).getBlock() == Blocks.AIR;
 
 		super.tick();
 	}
 
+	@Override
 	protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
 		return dimensions.height / 2.0F;
 	}
 
+	@Override
 	public boolean handleFallDamage(float fallDistance, float damageMultiplier) {
 		return false;
 	}
 
+	@Override
 	protected void fall(double heightDifference, boolean onGround, BlockState landedState, BlockPos landedPosition) {
 	}
 
+	@Override
 	protected boolean hasWings() {
 		return true;
 	}
@@ -147,7 +159,7 @@ public class DragonflyEntity extends AnimalEntity implements Flutterer {
 
 	@Override
 	public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-		return (DragonflyEntity) EymbraEntities.DRAGONFLY.create(this.world);
+		return EymbraEntities.DRAGONFLY.create(this.world);
 	}
 
 	public boolean isFlappingWings() {

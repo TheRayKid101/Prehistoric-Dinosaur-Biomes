@@ -109,6 +109,8 @@ public class EymbraItems {
 
 	public static final Item PREHISTORIC_FARMLAND;
 
+	// public static final Item PREHISTORIC_SPIKED_BARK;
+
 	public static void init() {
 	}
 
@@ -158,6 +160,8 @@ public class EymbraItems {
 		PREHISTORIC_LEPIDODENDRALES_LOG = register(EymbraBlocks.PREHISTORIC_LEPIDODENDRALES_LOG, EymbraPrehistoric.PREHISTORIC_GROUP);
 		PREHISTORIC_DARKWOOD_LOG = register(EymbraBlocks.PREHISTORIC_DARKWOOD_LOG, EymbraPrehistoric.PREHISTORIC_GROUP);
 		PREHISTORIC_MANGROVE_LOG = register(EymbraBlocks.PREHISTORIC_MANGROVE_LOG, EymbraPrehistoric.PREHISTORIC_GROUP);
+		// PREHISTORIC_SPIKED_BARK = register(EymbraBlocks.PREHISTORIC_SPIKED_BARK,
+		// EymbraPrehistoric.PREHISTORIC_GROUP);
 
 		PREHISTORIC_CALAMITES_SLAB = register(EymbraBlocks.PREHISTORIC_CALAMITES_SLAB, EymbraPrehistoric.PREHISTORIC_GROUP);
 		PREHISTORIC_LEPIDODENDRALES_SLAB = register(EymbraBlocks.PREHISTORIC_LEPIDODENDRALES_SLAB, EymbraPrehistoric.PREHISTORIC_GROUP);
@@ -180,7 +184,7 @@ public class EymbraItems {
 		PREHISTORIC_RAW_HADROSAUR = register("prehistoric_raw_hadrosaur", new Item((new Item.Settings()).group(ItemGroup.FOOD).food(EymbraFoodComponents.HADROSAUR)));
 		PREHISTORIC_COOKED_HADROSAUR = register("prehistoric_cooked_hadrosaur", new Item((new Item.Settings()).group(ItemGroup.FOOD).food(EymbraFoodComponents.COOKED_HADROSAUR)));
 		PREHISTORIC_AMMONITE_SHELL = register("prehistoric_ammonite_shell", new Item((new Item.Settings()).group(ItemGroup.MATERIALS)));
-		PREHISTORIC_DODO_EGG = register("prehistoric_dodo_egg", (new EggItem((new Item.Settings()).maxCount(16).group(ItemGroup.MATERIALS))));
+		PREHISTORIC_DODO_EGG = register("prehistoric_dodo_egg", (new DodoEggItem((new Item.Settings()).maxCount(16).group(ItemGroup.MATERIALS))));
 		PREHISTORIC_RAPTOR_CLAW = register("prehistoric_raptor_claw", new Item((new Item.Settings()).group(ItemGroup.MISC)));
 		PREHISTORIC_CLAW_DAGGER = register("prehistoric_claw_dagger", new Item((new Item.Settings()).group(ItemGroup.MISC)));
 		PREHISTORIC_RAW_DODO = register("prehistoric_raw_dodo", new Item((new Item.Settings()).group(ItemGroup.FOOD).food(FoodComponents.CHICKEN)));

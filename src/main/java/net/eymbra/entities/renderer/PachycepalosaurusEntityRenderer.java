@@ -12,12 +12,12 @@ import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class PachycepalosaurusEntityRenderer extends MobEntityRenderer<PachycepalosaurusEntity, PachycepalosaurusEntityModel<PachycepalosaurusEntity>> {
-	private static final Identifier _PACHYCEPALOSAURUS_TEXTURE = new Identifier(EymbraPrehistoric.MODID, "textures/entity/pachycepalosaurus/pachycepalosaurus.png");
+	private static final Identifier _PACHYCEPALOSAURUS_TEXTURE = new Identifier(EymbraPrehistoric.MODID, "textures/entity/pachycephalosaurus/pachycephalosaurus.png");
 	private final float scale;
 
 	public PachycepalosaurusEntityRenderer(EntityRenderDispatcher dispatcher) {
-		super(dispatcher, new PachycepalosaurusEntityModel<>(), 1.0F);
-		this.scale = 2.25F;
+		super(dispatcher, new PachycepalosaurusEntityModel<>(), 0.5F);
+		this.scale = 1.0F;
 	}
 
 	@Override

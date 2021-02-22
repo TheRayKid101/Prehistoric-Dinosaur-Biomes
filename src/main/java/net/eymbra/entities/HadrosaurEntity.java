@@ -35,11 +35,12 @@ import net.minecraft.world.WorldView;
 
 public class HadrosaurEntity extends AnimalEntity {
 	private static final Ingredient BREEDING_INGREDIENT;
-	
+
 	protected HadrosaurEntity(EntityType<? extends AnimalEntity> entityType, World world) {
 		super(entityType, world);
 	}
 
+	@Override
 	protected void initGoals() {
 		this.goalSelector.add(0, new SwimGoal(this));
 		this.goalSelector.add(1, new EscapeDangerGoal(this, 1.25D));
@@ -51,22 +52,26 @@ public class HadrosaurEntity extends AnimalEntity {
 		this.goalSelector.add(8, new LookAroundGoal(this));
 	}
 
+	@Override
 	public float getPathfindingFavor(BlockPos pos, WorldView world) {
 		return world.getBlockState(pos.down()).isOf(EymbraBlocks.PREHISTORIC_GRASS_BLOCK) ? 10.0F : world.getBrightness(pos) - 0.5F;
 	}
-	
+
+	@Override
 	protected float getActiveEyeHeight(EntityPose pose, EntityDimensions dimensions) {
 		return this.isBaby() ? dimensions.height * 0.85F : dimensions.height * 0.92F;
 	}
-	
+
+	@Override
 	public boolean canSpawn(WorldAccess world, SpawnReason spawnReason) {
 		return world.getBlockState(this.getBlockPos().down()).isOf(EymbraBlocks.PREHISTORIC_GRASS_BLOCK);
 	}
-	
+
+	@Override
 	public boolean isBreedingItem(ItemStack stack) {
 		return BREEDING_INGREDIENT.test(stack);
 	}
-	
+
 	@Override
 	protected SoundEvent getAmbientSound() {
 		return EymbraSoundEvents.HADROSAUR_AMBIENT;
@@ -86,20 +91,21 @@ public class HadrosaurEntity extends AnimalEntity {
 	protected void playStepSound(BlockPos pos, BlockState state) {
 		this.playSound(SoundEvents.ENTITY_POLAR_BEAR_STEP, 0.15F, 1.0F);
 	}
-	
+
 	@Override
 	public PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
-		return (HadrosaurEntity) EymbraEntities.HADROSAUR.create(this.world);
+		return EymbraEntities.HADROSAUR.create(this.world);
 	}
 
 	public static Builder createHadrosaurAttributes() {
-		return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 150.0D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 7.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.3D);
+		return MobEntity.createMobAttributes().add(EntityAttributes.GENERIC_MAX_HEALTH, 150.0D).add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 7.0D).add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.21D);
 	}
-	
+
+	@Override
 	public boolean canImmediatelyDespawn(double distanceSquared) {
 		return false;
 	}
-	
+
 	static {
 		BREEDING_INGREDIENT = Ingredient.ofItems(Items.WHEAT_SEEDS, Items.MELON_SEEDS, Items.PUMPKIN_SEEDS, Items.BEETROOT_SEEDS);
 	}

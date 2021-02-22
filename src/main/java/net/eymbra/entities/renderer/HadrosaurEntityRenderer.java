@@ -12,12 +12,12 @@ import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class HadrosaurEntityRenderer extends MobEntityRenderer<HadrosaurEntity, HadrosaurEntityModel<HadrosaurEntity>> {
-	private static final Identifier _HADROSAUR_TEXTURE = new Identifier(EymbraPrehistoric.MODID, "textures/entity/hadrosaur/hadrosaur.png");
+	private static final Identifier _HADROSAUR_TEXTURE = new Identifier(EymbraPrehistoric.MODID, "textures/entity/hadrosaur/parasaurolophus.png");
 	private final float scale;
 
 	public HadrosaurEntityRenderer(EntityRenderDispatcher dispatcher) {
 		super(dispatcher, new HadrosaurEntityModel<>(), 1.0F);
-		this.scale = 2.25F;
+		this.scale = 1.0F;
 	}
 
 	@Override

@@ -1,217 +1,195 @@
-/**GENERATE FILE SPECX PROJECTE7 RJXB FORGE 1.4.2 ENTITY MODEL TO 1.15.2 MODEL**/
 package net.eymbra.entities.model;
 
-import java.util.Arrays;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableList.Builder;
+import net.eymbra.entities.AnkylosaurusEntity;
 import net.minecraft.client.model.ModelPart;
-import net.minecraft.entity.Entity;
+import net.minecraft.client.render.VertexConsumer;
+import net.minecraft.client.render.entity.model.EntityModel;
+import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.math.MathHelper;
 
-public class AnkylosaurusEntityModel<T extends Entity> extends DinosaurModel<T> {
-	private ModelPart[] bodyParts;
-	private ImmutableList<ModelPart> bodyPartList;
-	private ModelPart[] legParts1;
-	private ModelPart[] legParts2;
-	
+public class AnkylosaurusEntityModel<T extends AnkylosaurusEntity> extends EntityModel<T> {
+	private final ModelPart root;
+	private final ModelPart body;
+	private final ModelPart head;
+	private final ModelPart headhornLeftUp;
+	private final ModelPart headhornLeftDown;
+	private final ModelPart headHornRightUp;
+	private final ModelPart headHornRightDown;
+	private final ModelPart jaw;
+	private final ModelPart snout;
+	private final ModelPart tail;
+	private final ModelPart tail2;
+	private final ModelPart tail3;
+	private final ModelPart maceTailLeft;
+	private final ModelPart maceTailRight;
+	private final ModelPart backSpikes1;
+	private final ModelPart backSpikes2;
+	private final ModelPart backSpikes3;
+	private final ModelPart backSpikesLeft;
+	private final ModelPart backSpikesRight;
+	private final ModelPart armLeft;
+	private final ModelPart armRight;
+	private final ModelPart legLeft;
+	private final ModelPart legRight;
+	private float tailLift;
+	private float tailShake;
+
 	public AnkylosaurusEntityModel() {
-		this.bodyParts = new ModelPart[12];
-		this.legParts1 = new ModelPart[4];
-		this.legParts2 = new ModelPart[4];
+		textureWidth = 256;
+		textureHeight = 128;
 
-		this.textureWidth = 128;
-		this.textureHeight = 64;
+		root = new ModelPart(this);
+		root.setPivot(0.0F, 3.0F, 0.0F);
 
-		/*
-		 * *********************************** BODY PARTS
-		 * ***********************************
-		 */
-		this.bodyParts[0] = new ModelPart(this, 0, 0);
-		this.bodyParts[0].addCuboid(0.0F, 0.0F, 0.0F, 8, 7, 8);
-		this.bodyParts[0].setPivot(-4.0F, 7.5F, -9.0F);
-		this.bodyParts[0].setTextureSize(128, 64);
-		this.bodyParts[0].mirror = true;
-		setRotation(this.bodyParts[0], 0.0F, 0.0F, 0.0F);
-		
-		this.bodyParts[1] = new ModelPart(this, 0, 15);
-		this.bodyParts[1].addCuboid(0.0F, 0.0F, 0.0F, 4, 6, 4);
-		this.bodyParts[1].setPivot(-2.0F, 10.5F, -12.5F);
-		this.bodyParts[1].setTextureSize(128, 64);
-		this.bodyParts[1].mirror = true;
-		setRotation(this.bodyParts[1], 0.4363323F, 0.0F, 0.0F);
-		
-		this.bodyParts[2] = new ModelPart(this, 24, 0);
-		this.bodyParts[2].addCuboid(0.0F, 0.0F, 0.0F, 6, 2, 5);
-		this.bodyParts[2].setPivot(-3.0F, 7.5F, -6.5F);
-		this.bodyParts[2].setTextureSize(128, 64);
-		this.bodyParts[2].mirror = true;
-		setRotation(this.bodyParts[2], 0.1745329F, 0.0F, 0.0F);
-		
-		this.bodyParts[3] = new ModelPart(this, 32, 7);
-		this.bodyParts[3].addCuboid(0.0F, 0.0F, 0.0F, 3, 3, 3);
-		this.bodyParts[3].setPivot(3.0F, 7.2F, -4.5F);
-		this.bodyParts[3].setTextureSize(128, 64);
-		this.bodyParts[3].mirror = true;
-		setRotation(this.bodyParts[3], 0.1745329F, 0.0F, 0.0F);
-		
-		this.bodyParts[4] = new ModelPart(this, 44, 7);
-		this.bodyParts[4].addCuboid(0.0F, 0.0F, 0.0F, 3, 3, 3);
-		this.bodyParts[4].setPivot(-6.0F, 7.2F, -4.5F);
-		this.bodyParts[4].setTextureSize(128, 64);
-		this.bodyParts[4].mirror = true;
-		setRotation(this.bodyParts[4], 0.1745329F, 0.0F, 0.0F);
-		
-		this.bodyParts[5] = new ModelPart(this, 32, 7);
-		this.bodyParts[5].addCuboid(0.0F, 0.0F, 0.0F, 3, 3, 3);
-		this.bodyParts[5].setPivot(3.0F, 11.5F, -4.0F);
-		this.bodyParts[5].setTextureSize(128, 64);
-		this.bodyParts[5].mirror = true;
-		setRotation(this.bodyParts[5], 0.0F, 0.0F, 0.1745329F);
-		
-		this.bodyParts[6] = new ModelPart(this, 44, 7);
-		this.bodyParts[6].addCuboid(0.0F, 0.0F, 0.0F, 3, 3, 3);
-		this.bodyParts[6].setPivot(-6.0F, 12.0F, -4.0F);
-		this.bodyParts[6].setTextureSize(128, 64);
-		this.bodyParts[6].mirror = true;
-		setRotation(this.bodyParts[6], 0.0F, 0.0F, -0.1745329F);
-		
-		this.bodyParts[7] = new ModelPart(this, 68, 0);
-		this.bodyParts[7].addCuboid(0.0F, 0.0F, 0.0F, 14, 10, 16);
-		this.bodyParts[7].setPivot(-7.0F, 6.0F, 0.0F);
-		this.bodyParts[7].setTextureSize(128, 64);
-		this.bodyParts[7].mirror = true;
-		setRotation(this.bodyParts[7], 0.0F, 0.0F, 0.0F);
-		
-		this.bodyParts[8] = new ModelPart(this, 56, 26);
-		this.bodyParts[8].addCuboid(0.0F, 0.0F, 0.0F, 18, 2, 18);
-		this.bodyParts[8].setPivot(-9.0F, 10.0F, -1.0F);
-		this.bodyParts[8].setTextureSize(128, 64);
-		this.bodyParts[8].mirror = true;
-		setRotation(this.bodyParts[8], 0.0F, 0.0F, 0.0F);
-		
-		this.bodyParts[8] = new ModelPart(this, 46, 0);
-		this.bodyParts[8].addCuboid(0.0F, 0.0F, 0.0F, 4, 5, 2);
-		this.bodyParts[8].setPivot(-2.0F, 8.0F, -1.0F);
-		this.bodyParts[8].setTextureSize(128, 64);
-		this.bodyParts[8].mirror = true;
-		setRotation(this.bodyParts[8], 0.0F, 0.0F, 0.0F);
-		
-		this.bodyParts[9] = new ModelPart(this, 104, 46);
-		this.bodyParts[9].addCuboid(0.0F, 0.0F, 0.0F, 6, 6, 6);
-		this.bodyParts[9].setPivot(-3.0F, 7.0F, 16.0F);
-		this.bodyParts[9].setTextureSize(128, 64);
-		this.bodyParts[9].mirror = true;
-		setRotation(this.bodyParts[9], -0.2617994F, 0.0F, 0.0F);
-		
-		this.bodyParts[10] = new ModelPart(this, 80, 46);
-		this.bodyParts[10].addCuboid(0.0F, 0.0F, 0.0F, 6, 6, 6);
-		this.bodyParts[10].setPivot(-3.0F, 9.0F, 28.0F);
-		this.bodyParts[10].setTextureSize(128, 64);
-		this.bodyParts[10].mirror = true;
-		setRotation(this.bodyParts[10], 0.0F, 0.0F, 0.0F);
-		
-		this.bodyParts[11] = new ModelPart(this, 56, 46);
-		this.bodyParts[11].addCuboid(0.0F, 0.0F, 0.0F, 4, 4, 8);
-		this.bodyParts[11].setPivot(-2.0F, 10.0F, 20.0F);
-		this.bodyParts[11].setTextureSize(128, 64);
-		this.bodyParts[11].mirror = true;
-		setRotation(this.bodyParts[11], 0.0F, 0.0F, 0.0F);
-		
-		/*
-		 * *********************************** LEG PARTS ONE
-		 * ***********************************
-		 */
-		this.legParts1[0] = new ModelPart(this, 18, 24);
-		this.legParts1[0].addCuboid(0.0F, 0.0F, 0.0F, 4, 4, 4);
-		this.legParts1[0].setPivot(5.0F, 14.0F, 1.0F);
-		this.legParts1[0].setTextureSize(128, 64);
-		this.legParts1[0].mirror = true;
-		setRotation(this.legParts1[0], 0.0F, 0.0F, 0.0F);
-		
-		this.legParts1[1] = new ModelPart(this, 0, 25);
-		this.legParts1[1].addCuboid(0.0F, 0.0F, 0.0F, 4, 5, 5);
-		this.legParts1[1].setPivot(5.0F, 13.0F, 10.0F);
-		this.legParts1[1].setTextureSize(128, 64);
-		this.legParts1[1].mirror = true;
-		setRotation(this.legParts1[1], 0.0F, 0.0F, 0.0F);
-		
-		this.legParts1[2] = new ModelPart(this, 0, 35);
-		this.legParts1[2].addCuboid(0.0F, 3.0F, 0.0F, 3, 4, 4);
-		this.legParts1[2].setPivot(5.0F, 14.0F, 2.0F);
-		this.legParts1[2].setTextureSize(128, 64);
-		this.legParts1[2].mirror = true;
-		setRotation(this.legParts1[2], 0.0F, 0.0F, 0.0F);
-		
-		this.legParts1[3] = new ModelPart(this, 0, 35);
-		this.legParts1[3].addCuboid(0.0F, 3.0F, 0.0F, 3, 4, 4);
-		this.legParts1[3].setPivot(5.0F, 14.0F, 12.0F);
-		this.legParts1[3].setTextureSize(128, 64);
-		this.legParts1[3].mirror = true;
-		setRotation(this.legParts1[3], 0.0F, 0.0F, 0.0F);
-		
-		/*
-		 * *********************************** LEG PARTS TWO
-		 * ***********************************
-		 */
-		this.legParts2[0] = new ModelPart(this, 18, 24);
-		this.legParts2[0].addCuboid(0.0F, 0.0F, 0.0F, 4, 4, 4);
-		this.legParts2[0].setPivot(-9.0F, 14.0F, 1.0F);
-		this.legParts2[0].setTextureSize(128, 64);
-		this.legParts2[0].mirror = true;
-		setRotation(this.legParts2[0], 0.0F, 0.0F, 0.0F);
-		
-		this.legParts2[1] = new ModelPart(this, 0, 25);
-		this.legParts2[1].addCuboid(0.0F, 0.0F, 0.0F, 4, 5, 5);
-		this.legParts2[1].setPivot(-9.0F, 13.0F, 10.0F);
-		this.legParts2[1].setTextureSize(128, 64);
-		this.legParts2[1].mirror = true;
-		setRotation(this.legParts2[1], 0.0F, 0.0F, 0.0F);
-		
-		this.legParts2[2] = new ModelPart(this, 0, 35);
-		this.legParts2[2].addCuboid(0.0F, 3.0F, 0.0F, 3, 4, 4);
-		this.legParts2[2].setPivot(-8.0F, 14.0F, 2.0F);
-		this.legParts2[2].setTextureSize(128, 64);
-		this.legParts2[2].mirror = true;
-		setRotation(this.legParts2[2], 0.0F, 0.0F, 0.0F);
-		
-		this.legParts2[3] = new ModelPart(this, 0, 35);
-		this.legParts2[3].addCuboid(0.0F, 3.0F, 0.0F, 3, 4, 4);
-		this.legParts2[3].setPivot(-8.0F, 14.0F, 12.0F);
-		this.legParts2[3].setTextureSize(128, 64);
-		this.legParts2[3].mirror = true;
-		setRotation(this.legParts2[3], 0.0F, 0.0F, 0.0F);
-		
-		Builder<ModelPart> builderBody = ImmutableList.builder();
-		builderBody.addAll(Arrays.asList(this.bodyParts));
-		builderBody.addAll(Arrays.asList(this.legParts1));
-		builderBody.addAll(Arrays.asList(this.legParts2));
-		this.bodyPartList = builderBody.build();
-	}
+		body = new ModelPart(this);
+		body.setPivot(0.0F, 0.0F, -7.7F);
+		root.addChild(body);
+		body.setTextureOffset(0, 50).addCuboid(-13.0F, -8.0F, 0.0F, 26.0F, 16.0F, 46.0F, 0.0F, false);
 
-	private void setRotation(ModelPart model, float x, float y, float z) {
-		model.pitch = x;
-		model.roll = y;
-		model.yaw = z;
-	}
+		head = new ModelPart(this);
+		head.setPivot(0.0F, 1.0F, 0.0F);
+		body.addChild(head);
+		head.setTextureOffset(0, 0).addCuboid(-5.0F, -5.0F, -11.0F, 10.0F, 10.0F, 11.0F, 0.0F, false);
 
-	@Override
-	public Iterable<ModelPart> getBodyParts() {
-		return this.bodyPartList;
-	}
+		headhornLeftUp = new ModelPart(this);
+		headhornLeftUp.setPivot(0.0F, 0.0F, 0.0F);
+		head.addChild(headhornLeftUp);
+		headhornLeftUp.setTextureOffset(62, 0).addCuboid(-6.0F, -6.0F, -3.0F, 4.0F, 4.0F, 4.0F, 0.0F, false);
 
-	@Override
-	public Iterable<ModelPart> getTailParts() {
-		return null;
+		headhornLeftDown = new ModelPart(this);
+		headhornLeftDown.setPivot(0.0F, 0.0F, 0.0F);
+		head.addChild(headhornLeftDown);
+		headhornLeftDown.setTextureOffset(62, 0).addCuboid(-6.0F, 2.0F, -3.0F, 4.0F, 4.0F, 4.0F, 0.0F, false);
+
+		headHornRightUp = new ModelPart(this);
+		headHornRightUp.setPivot(0.0F, 0.0F, 0.0F);
+		head.addChild(headHornRightUp);
+		headHornRightUp.setTextureOffset(62, 0).addCuboid(2.0F, -6.0F, -3.0F, 4.0F, 4.0F, 4.0F, 0.0F, false);
+
+		headHornRightDown = new ModelPart(this);
+		headHornRightDown.setPivot(0.0F, 0.0F, 0.0F);
+		head.addChild(headHornRightDown);
+		headHornRightDown.setTextureOffset(62, 0).addCuboid(2.0F, 2.0F, -3.0F, 4.0F, 4.0F, 4.0F, 0.0F, false);
+
+		jaw = new ModelPart(this);
+		jaw.setPivot(0.0F, 2.8F, -11.0F);
+		head.addChild(jaw);
+		jaw.setTextureOffset(0, 21).addCuboid(-2.5F, 0.0F, -4.6F, 5.0F, 2.0F, 5.0F, 0.0F, false);
+
+		snout = new ModelPart(this);
+		snout.setPivot(0.0F, 2.8F, -11.0F);
+		head.addChild(snout);
+		snout.setTextureOffset(0, 28).addCuboid(-2.5F, -6.0F, -4.6F, 5.0F, 6.0F, 5.0F, 0.0F, false);
+
+		tail = new ModelPart(this);
+		tail.setPivot(0.0F, 0.0F, 46.0F);
+		body.addChild(tail);
+		tail.setTextureOffset(144, 76).addCuboid(-5.0F, -5.0F, 0.0F, 10.0F, 10.0F, 25.0F, 0.0F, false);
+
+		tail2 = new ModelPart(this);
+		tail2.setPivot(0.0F, 0.0F, 25.0F);
+		tail.addChild(tail2);
+		tail2.setTextureOffset(195, 92).addCuboid(-4.0F, -4.0F, 0.0F, 8.0F, 8.0F, 19.0F, 0.0F, false);
+
+		tail3 = new ModelPart(this);
+		tail3.setPivot(0.0F, 0.0F, 19.0F);
+		tail2.addChild(tail3);
+		tail3.setTextureOffset(0, 74).addCuboid(-2.0F, -2.0F, 0.0F, 4.0F, 4.0F, 17.0F, 0.0F, false);
+
+		maceTailLeft = new ModelPart(this);
+		maceTailLeft.setPivot(0.0F, 0.0F, 0.0F);
+		tail3.addChild(maceTailLeft);
+		maceTailLeft.setTextureOffset(62, 21).addCuboid(-10.0F, -1.5F, 7.0F, 8.0F, 3.0F, 9.0F, 0.0F, true);
+
+		maceTailRight = new ModelPart(this);
+		maceTailRight.setPivot(0.0F, 0.0F, 0.0F);
+		tail3.addChild(maceTailRight);
+		maceTailRight.setTextureOffset(62, 8).addCuboid(2.0F, -1.5F, 7.0F, 8.0F, 3.0F, 9.0F, 0.0F, true);
+
+		backSpikes1 = new ModelPart(this);
+		backSpikes1.setPivot(0.0F, 0.0F, 0.0F);
+		body.addChild(backSpikes1);
+		backSpikes1.setTextureOffset(108, 0).addCuboid(-1.0F, -11.0F, 0.0F, 1.0F, 3.0F, 46.0F, 0.0F, false);
+
+		backSpikes2 = new ModelPart(this);
+		backSpikes2.setPivot(0.0F, 0.0F, 0.0F);
+		body.addChild(backSpikes2);
+		backSpikes2.setTextureOffset(108, 0).addCuboid(-10.0F, -11.0F, 0.0F, 1.0F, 3.0F, 46.0F, 0.0F, false);
+
+		backSpikes3 = new ModelPart(this);
+		backSpikes3.setPivot(0.0F, 0.0F, 0.0F);
+		body.addChild(backSpikes3);
+		backSpikes3.setTextureOffset(108, 0).addCuboid(8.0F, -11.0F, 0.0F, 1.0F, 3.0F, 46.0F, 0.0F, false);
+
+		backSpikesLeft = new ModelPart(this);
+		backSpikesLeft.setPivot(0.0F, 0.0F, 0.0F);
+		body.addChild(backSpikesLeft);
+		backSpikesLeft.setTextureOffset(0, 0).addCuboid(-20.0F, 4.0F, 0.0F, 7.0F, 1.0F, 46.0F, 0.0F, false);
+
+		backSpikesRight = new ModelPart(this);
+		backSpikesRight.setPivot(0.0F, 0.0F, 0.0F);
+		body.addChild(backSpikesRight);
+		backSpikesRight.setTextureOffset(0, 0).addCuboid(13.0F, 4.0F, 0.0F, 7.0F, 1.0F, 46.0F, 0.0F, true);
+
+		armLeft = new ModelPart(this);
+		armLeft.setPivot(-8.0F, 8.0F, 8.0F);
+		body.addChild(armLeft);
+		armLeft.setTextureOffset(100, 0).addCuboid(-4.0F, 0.0F, -4.0F, 8.0F, 13.0F, 8.0F, 0.0F, false);
+
+		armRight = new ModelPart(this);
+		armRight.setPivot(8.0F, 8.0F, 8.0F);
+		body.addChild(armRight);
+		armRight.setTextureOffset(100, 0).addCuboid(-4.0F, 0.0F, -4.0F, 8.0F, 13.0F, 8.0F, 0.0F, false);
+
+		legLeft = new ModelPart(this);
+		legLeft.setPivot(-8.0F, 8.0F, 38.0F);
+		body.addChild(legLeft);
+		legLeft.setTextureOffset(100, 0).addCuboid(-4.0F, 0.0F, -4.0F, 8.0F, 13.0F, 8.0F, 0.0F, false);
+
+		legRight = new ModelPart(this);
+		legRight.setPivot(8.0F, 8.0F, 38.0F);
+		body.addChild(legRight);
+		legRight.setTextureOffset(100, 0).addCuboid(-4.0F, 0.0F, -4.0F, 8.0F, 13.0F, 8.0F, 0.0F, false);
 	}
 
 	@Override
 	public void setAngles(T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
-		for (int i = 0; i < legParts1.length; i++) {
-			this.legParts1[i].pitch = MathHelper.cos(limbAngle * 0.6662F + 3.1415927F) * 1.4F * limbDistance;
-		}
+		this.legLeft.pitch = MathHelper.cos(limbAngle * 0.6662F * 0.5F + (float) Math.PI) * 1.4F * limbDistance * 0.5F;
+		this.legRight.pitch = MathHelper.cos(limbAngle * 0.6662F * 0.5F) * 1.4F * limbDistance * 0.5F;
 
-		for (int i = 0; i < legParts2.length; i++) {
-			this.legParts2[i].pitch = MathHelper.cos(limbAngle * 0.6662F) * 1.4F * limbDistance;
-		}
+		this.armLeft.pitch = MathHelper.cos(limbAngle * 0.6662F + (float) Math.PI) * 1.4F * limbDistance * 0.5F;
+		this.armRight.pitch = MathHelper.cos(limbAngle * 0.6662F) * 1.4F * limbDistance * 0.5F;
+
+		this.tail.pitch = this.tailLift + MathHelper.cos((float) Math.toRadians(95)) + MathHelper.cos(animationProgress * 0.02F) * 0.05F;
+		this.tail2.pitch = this.tailLift + MathHelper.cos((float) Math.toRadians(95)) + MathHelper.cos(animationProgress * 0.01F) * 0.025F;
+
+		// Walking speed tail movement + Natural Movement Tail
+		this.tail.yaw = this.tailShake + (MathHelper.cos(limbAngle * 0.25F) * limbDistance * 0.5F) + (MathHelper.cos(animationProgress * 0.07F) * 0.2F);
+		this.tail2.yaw = this.tailShake + (MathHelper.cos(limbAngle * 0.25F) * limbDistance * 0.5F) + (MathHelper.cos(animationProgress * 0.07F) * 0.1F);
+
+		this.jaw.pitch = Math.abs(MathHelper.cos(animationProgress * 0.07F) * 0.05F);
+
+		this.head.yaw = headYaw * 0.015F;
+		this.head.pitch = headPitch * 0.01F;
+	}
+
+	@Override
+	public void animateModel(T entity, float limbAngle, float limbDistance, float tickDelta) {
+		super.animateModel(entity, limbAngle, limbDistance, tickDelta);
+		// this.tailLift = false ? MathHelper.cos(limbAngle * 0.05F) : 0;
+		// this.tailShake = false ? MathHelper.cos(limbAngle * 0.05F) : 0;
+	}
+
+	@Override
+	public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, float red, float green, float blue, float alpha) {
+		matrices.translate(0, 0, -1.0);
+
+		root.render(matrices, vertices, light, overlay);
+	}
+
+	public void setRotationAngle(ModelPart ModelPart, float x, float y, float z) {
+		ModelPart.pitch = x;
+		ModelPart.roll = y;
+		ModelPart.yaw = z;
 	}
 }

@@ -8,115 +8,110 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.math.MathHelper;
 
 public class DodoEntityModel<T extends Entity> extends EntityModel<T> {
-	private final ModelPart Body;
-	private final ModelPart Neck;
-	private final ModelPart Tail_Poof;
-	private final ModelPart Beak;
-	private final ModelPart Bottom;
-	private final ModelPart LeftLeg;
-	private final ModelPart RightLeg;
-	private final ModelPart WingLeft;
-	private final ModelPart WingRight;
-	private final ModelPart Head;
+	private final ModelPart root;
+	private final ModelPart body;
+	private final ModelPart neck;
+	private final ModelPart head;
+	private final ModelPart beakJaw;
+	private final ModelPart beakSnout;
+	private final ModelPart beakSnout2;
+	private final ModelPart tailFluff;
+	private final ModelPart wingLeft;
+	private final ModelPart wingLeft2;
+	private final ModelPart wingRight;
+	private final ModelPart wingRight2;
+	private final ModelPart legLeft;
+	private final ModelPart legRight;
 
 	public DodoEntityModel() {
-		this.textureWidth = 64;
-		this.textureHeight = 32;
+		textureWidth = 64;
+		textureHeight = 32;
 
-		this.Body = new ModelPart(this, 0, 0);
-		this.Body.addCuboid(0.0F, 0.0F, 0.0F, 7, 7, 9);
-		this.Body.setPivot(-3.0F, 11.0F, -6.0F);
-		this.Body.setTextureSize(64, 32);
-		this.Body.mirror = true;
+		root = new ModelPart(this);
+		root.setPivot(0.0F, 0.0F, 0.0F);
 
-		this.Neck = new ModelPart(this, 0, 16);
-		this.Neck.addCuboid(0.0F, 0.0F, 0.0F, 4, 8, 3);
-		this.Neck.setPivot(-1.5F, 6.0F, -7.0F);
-		this.Neck.setTextureSize(64, 32);
-		this.Neck.mirror = true;
-		setRotation(this.Neck, -0.2230717F, 0.0F, 0.0F);
+		body = new ModelPart(this);
+		body.setPivot(0.0F, 19.5F, 0.0F);
+		root.addChild(body);
+		body.setTextureOffset(0, 6).addCuboid(-2.5F, -2.5F, 0.0F, 5.0F, 5.0F, 5.0F, 0.0F, false);
 
-		this.Tail_Poof = new ModelPart(this, 14, 16);
-		this.Tail_Poof.addCuboid(0.0F, 0.0F, 0.0F, 4, 4, 4);
-		this.Tail_Poof.setPivot(-1.5F, 10.0F, 1.0F);
-		this.Tail_Poof.setTextureSize(64, 32);
-		this.Tail_Poof.mirror = true;
-		setRotation(this.Tail_Poof, -0.1858931F, 0.0F, 0.0F);
+		neck = new ModelPart(this);
+		neck.setPivot(0.0F, 0.0F, 0.0F);
+		body.addChild(neck);
+		neck.setTextureOffset(0, 16).addCuboid(-1.0F, -3.5F, -1.0F, 2.0F, 4.0F, 2.0F, 0.0F, false);
 
-		this.Beak = new ModelPart(this, 23, 1);
-		this.Beak.addCuboid(0.0F, 0.0F, 0.0F, 3, 3, 5);
-		this.Beak.setPivot(-1.0F, 6.0F, -14.0F);
-		this.Beak.setTextureSize(64, 32);
-		this.Beak.mirror = true;
-		setRotation(this.Beak, 0.0F, 0.0F, 0.0F);
+		head = new ModelPart(this);
+		head.setPivot(0.0F, -3.0F, 0.5F);
+		neck.addChild(head);
+		head.setTextureOffset(0, 0).addCuboid(-1.5F, -3.0F, -2.0F, 3.0F, 3.0F, 3.0F, 0.0F, false);
 
-		this.Bottom = new ModelPart(this, 0, 27);
-		this.Bottom.addCuboid(0.0F, 0.0F, 0.0F, 7, 1, 4);
-		this.Bottom.setPivot(-3.0F, 18.0F, -3.0F);
-		this.Bottom.setTextureSize(64, 32);
-		this.Bottom.mirror = true;
-		setRotation(this.Bottom, 0.0F, 0.0F, 0.0F);
+		beakJaw = new ModelPart(this);
+		beakJaw.setPivot(0.0F, -1.0F, -2.0F);
+		head.addChild(beakJaw);
+		beakJaw.setTextureOffset(22, 0).addCuboid(-1.0F, 0.0F, -3.0F, 2.0F, 1.0F, 3.0F, 0.0F, false);
 
-		this.LeftLeg = new ModelPart(this, 22, 24);
-		this.LeftLeg.addCuboid(0.0F, 0.0F, 0.0F, 3, 3, 3);
-		this.LeftLeg.setPivot(1.0F, 19.0F, -3.0F);
-		this.LeftLeg.setTextureSize(64, 32);
-		this.LeftLeg.mirror = true;
-		setRotation(this.LeftLeg, 0.0F, 0.0F, 0.0F);
+		beakSnout = new ModelPart(this);
+		beakSnout.setPivot(0.0F, -1.0F, -2.0F);
+		head.addChild(beakSnout);
+		beakSnout.setTextureOffset(12, 0).addCuboid(-1.0F, -1.0F, -3.0F, 2.0F, 1.0F, 3.0F, 0.0F, false);
 
-		this.RightLeg = new ModelPart(this, 22, 24);
-		this.RightLeg.addCuboid(0.0F, 0.0F, 0.0F, 3, 3, 3);
-		this.RightLeg.setPivot(-3.0F, 19.0F, -3.0F);
-		this.RightLeg.setTextureSize(64, 32);
-		this.RightLeg.mirror = true;
-		setRotation(this.RightLeg, 0.0F, 0.0F, 0.0F);
+		beakSnout2 = new ModelPart(this);
+		beakSnout2.setPivot(0.0F, 0.0F, 0.0F);
+		beakSnout.addChild(beakSnout2);
+		beakSnout2.setTextureOffset(15, 4).addCuboid(-1.0F, -2.0F, -4.0F, 2.0F, 3.0F, 2.0F, 0.0F, false);
 
-		this.WingLeft = new ModelPart(this, 34, 25);
-		this.WingLeft.addCuboid(0.0F, 0.0F, 0.0F, 1, 3, 4);
-		this.WingLeft.setPivot(4.0F, 13.0F, -5.0F);
-		this.WingLeft.setTextureSize(64, 32);
-		this.WingLeft.mirror = true;
-		setRotation(this.WingLeft, 0.0F, 0.0F, 0.0F);
+		tailFluff = new ModelPart(this);
+		tailFluff.setPivot(0.0F, 0.0F, 0.0F);
+		body.addChild(tailFluff);
+		tailFluff.setTextureOffset(8, 16).addCuboid(-2.5F, -1.5F, 5.0F, 5.0F, 4.0F, 1.0F, 0.0F, false);
 
-		this.WingRight = new ModelPart(this, 34, 25);
-		this.WingRight.addCuboid(0.0F, 0.0F, 0.0F, 1, 3, 4);
-		this.WingRight.setPivot(-4.0F, 13.0F, -5.0F);
-		this.WingRight.setTextureSize(64, 32);
-		this.WingRight.mirror = true;
-		setRotation(this.WingRight, 0.0F, 0.0F, 0.0F);
+		wingLeft = new ModelPart(this);
+		wingLeft.setPivot(-2.5F, -1.5F, 2.0F);
+		body.addChild(wingLeft);
+		wingLeft.setTextureOffset(0, 22).addCuboid(-1.0F, 0.0F, -1.0F, 1.0F, 2.0F, 3.0F, 0.0F, false);
 
-		this.Head = new ModelPart(this, 35, 5);
-		this.Head.addCuboid(0.0F, 0.0F, 0.0F, 5, 4, 4);
-		this.Head.setPivot(-2.0F, 5.0F, -9.0F);
-		this.Head.setTextureSize(64, 32);
-		this.Head.mirror = true;
-		setRotation(this.Head, 0.0F, 0.0F, 0.0F);
-	}
+		wingLeft2 = new ModelPart(this);
+		wingLeft2.setPivot(0.0F, 0.0F, 0.0F);
+		wingLeft.addChild(wingLeft2);
+		wingLeft2.setTextureOffset(0, 27).addCuboid(-1.0F, 1.0F, 2.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
 
-	private void setRotation(ModelPart model, float x, float y, float z) {
-		model.pitch = x;
-		model.roll = y;
-		model.yaw = z;
+		wingRight = new ModelPart(this);
+		wingRight.setPivot(2.5F, -1.5F, 2.0F);
+		body.addChild(wingRight);
+		wingRight.setTextureOffset(0, 22).addCuboid(0.0F, 0.0F, -1.0F, 1.0F, 2.0F, 3.0F, 0.0F, false);
+
+		wingRight2 = new ModelPart(this);
+		wingRight2.setPivot(0.0F, 0.0F, 0.0F);
+		wingRight.addChild(wingRight2);
+		wingRight2.setTextureOffset(0, 27).addCuboid(0.0F, 1.0F, 2.0F, 1.0F, 1.0F, 1.0F, 0.0F, false);
+
+		legLeft = new ModelPart(this);
+		legLeft.setPivot(-1.5F, 1.5F, 4.0F);
+		body.addChild(legLeft);
+		legLeft.setTextureOffset(32, 0).addCuboid(-1.5F, 0.0F, -3.0F, 3.0F, 3.0F, 3.0F, 0.0F, false);
+
+		legRight = new ModelPart(this);
+		legRight.setPivot(1.5F, 1.5F, 4.0F);
+		body.addChild(legRight);
+		legRight.setTextureOffset(32, 0).addCuboid(-1.5F, 0.0F, -3.0F, 3.0F, 3.0F, 3.0F, 0.0F, false);
 	}
 
 	@Override
 	public void setAngles(T entity, float limbAngle, float limbDistance, float animationProgress, float headYaw, float headPitch) {
-		this.RightLeg.pitch = MathHelper.cos(limbAngle * 0.6662F) * 1.4F * limbDistance;
-		this.LeftLeg.pitch = MathHelper.cos(limbAngle * 0.6662F + 3.1415927F) * 1.4F * limbDistance;
+		this.head.pitch = headPitch * 0.017453292F;
+		this.head.yaw = headYaw * 0.017453292F;
+		this.legRight.pitch = MathHelper.cos(limbAngle * 0.6662F) * 1.4F * limbDistance;
+		this.legLeft.pitch = MathHelper.cos(limbAngle * 0.6662F + 3.1415927F) * 1.4F * limbDistance;
 	}
 
 	@Override
 	public void render(MatrixStack matrices, VertexConsumer vertices, int light, int overlay, float red, float green, float blue, float alpha) {
-		this.Body.render(matrices, vertices, light, overlay, red, green, blue, alpha);
-		this.Neck.render(matrices, vertices, light, overlay, red, green, blue, alpha);
-		this.Tail_Poof.render(matrices, vertices, light, overlay, red, green, blue, alpha);
-		this.Beak.render(matrices, vertices, light, overlay, red, green, blue, alpha);
-		this.Bottom.render(matrices, vertices, light, overlay, red, green, blue, alpha);
-		this.LeftLeg.render(matrices, vertices, light, overlay, red, green, blue, alpha);
-		this.RightLeg.render(matrices, vertices, light, overlay, red, green, blue, alpha);
-		this.WingLeft.render(matrices, vertices, light, overlay, red, green, blue, alpha);
-		this.WingRight.render(matrices, vertices, light, overlay, red, green, blue, alpha);
-		this.Head.render(matrices, vertices, light, overlay, red, green, blue, alpha);
+		root.render(matrices, vertices, light, overlay);
+	}
 
+	public void setRotationAngle(ModelPart ModelPart, float x, float y, float z) {
+		ModelPart.pitch = x;
+		ModelPart.roll = y;
+		ModelPart.yaw = z;
 	}
 }

@@ -49,7 +49,9 @@
 	"ambient.hadrosaur.hadrosaur_ambient": {
 		"category": "neutral",
 		"sounds": [
-			"eymbra:hadrosaur/hadrosaur_ambient"
+			"eymbra:hadrosaur/hadrosaur_ambient",
+			"eymbra:hadrosaur/hadrosaur_ambient2",
+			"eymbra:hadrosaur/hadrosaur_ambient3"
 		]
 	},
 	"ambient.hadrosaur.hadrosaur_hurt": {

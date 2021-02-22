@@ -1,0 +1,16 @@
+{
+    "ambientocclusion": false,
+    "textures": {
+        "texture": "eymbra:block/prehistoric_spiked_bark",
+        "inside": "eymbra:block/prehistoric_spiked_bark",
+        "particle": "eymbra:block/prehistoric_spiked_bark"
+    },
+    "elements": [
+        {   "from": [ 4, 4, 4 ],
+            "to": [ 12, 12, 12 ],
+            "faces": {
+                "north": { "texture": "#inside" }
+            }
+        }
+    ]
+}

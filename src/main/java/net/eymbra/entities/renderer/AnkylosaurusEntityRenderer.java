@@ -17,7 +17,7 @@ public class AnkylosaurusEntityRenderer extends MobEntityRenderer<AnkylosaurusEn
 
 	public AnkylosaurusEntityRenderer(EntityRenderDispatcher dispatcher) {
 		super(dispatcher, new AnkylosaurusEntityModel<>(), 0.5F);
-		this.scale = 2.0F;
+		this.scale = 1.0F;
 	}
 
 	@Override

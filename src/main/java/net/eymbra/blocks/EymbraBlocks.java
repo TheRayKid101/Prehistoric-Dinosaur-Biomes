@@ -117,6 +117,8 @@ public class EymbraBlocks {
 	public static final Block PREHISTORIC_FARMLAND;
 	public static final BlockState PREHISTORIC_FARMLAND_STATE;
 
+	public static final Block PREHISTORIC_SPIKED_BARK;
+
 	public static void init() {
 	}
 
@@ -251,5 +253,7 @@ public class EymbraBlocks {
 
 		PREHISTORIC_FARMLAND = register("prehistoric_farmland", new ModifiableFarmlandBlock(AbstractBlock.Settings.of(Material.SOIL).ticksRandomly().strength(0.6F).sounds(BlockSoundGroup.GRAVEL).blockVision(EymbraBlocks::always).suffocates(EymbraBlocks::always)));
 		PREHISTORIC_FARMLAND_STATE = PREHISTORIC_FARMLAND.getDefaultState();
+
+		PREHISTORIC_SPIKED_BARK = register("prehistoric_spiked_bark", new SpikedBarkBlock(AbstractBlock.Settings.of(Material.PLANT, MaterialColor.BROWN).strength(0.4F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
 	}
 }

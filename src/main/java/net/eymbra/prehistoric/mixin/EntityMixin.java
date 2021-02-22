@@ -63,7 +63,7 @@ public class EntityMixin implements IEntityEymbraDimension {
 				MinecraftServer minecraftServer = serverWorld.getServer();
 				RegistryKey<World> registryKey = tmp_this.world.getRegistryKey() == dimension ? World.OVERWORLD : dimension;
 				ServerWorld serverWorld2 = minecraftServer.getWorld(registryKey);
-				System.out.println(serverWorld2);
+
 				if (serverWorld2 != null && minecraftServer.isNetherAllowed() && !tmp_this.hasVehicle() && this.eymbraPortalTime++ >= i) {
 					tmp_this.world.getProfiler().push("portal");
 					this.eymbraPortalTime = i;
@@ -90,7 +90,7 @@ public class EntityMixin implements IEntityEymbraDimension {
 	@Inject(at = @At("HEAD"), method = "getTeleportTarget", cancellable = true)
 	protected void getTeleportTarget(ServerWorld destination, CallbackInfoReturnable<TeleportTarget> ci) {
 		RegistryKey<World> prehistoric_dimension = EymbraDimensionType.DIMENSION_WORLD_REGISTRY.get(EymbraDimensions.THE_PREHISTORIC_REGISTRY_KEY);
-		boolean to_prehistoric   = destination.getRegistryKey() == prehistoric_dimension;
+		boolean to_prehistoric = destination.getRegistryKey() == prehistoric_dimension;
 		boolean to_surface_world = destination.getRegistryKey() == World.OVERWORLD;
 		Entity entity = ((Entity) (Object) this);
 		World world = entity.world;
@@ -120,40 +120,40 @@ public class EntityMixin implements IEntityEymbraDimension {
 			Block block = state.getBlock();
 
 			if (block == EymbraBlocks.PREHISTORIC_TIME_BOX) {
-				((TimeBoxBlock)block).trigger(state, world, blockPos.down());
+				((TimeBoxBlock) block).trigger(state, world, blockPos.down());
 				world.setBlockState(blockPos.down(), Blocks.AIR.getDefaultState());
 			}
 
-			ci.setReturnValue(new TeleportTarget(new Vec3d((double) blockPos.getX() + 0.5D, (double) blockPos.getY(), (double) blockPos.getZ() + 0.5D), this.getVelocity(), this.yaw, this.pitch));
+			ci.setReturnValue(new TeleportTarget(new Vec3d(blockPos.getX() + 0.5D, blockPos.getY(), blockPos.getZ() + 0.5D), this.getVelocity(), this.yaw, this.pitch));
 		}
-		
+
 //		RegistryKey<World> dimension = EymbraDimensionType.DIMENSION_WORLD_REGISTRY.get(EymbraDimensions.THE_PREHISTORIC_REGISTRY_KEY);
 //		boolean bl1 = destination.getRegistryKey() == dimension;
 //		World world = ((Entity) (Object) this).world;
-//		
+//
 //		BlockPos blockPos2;
 //		if (bl1 || world.getRegistryKey() == dimension) {
 //			blockPos2 = ((Entity) (Object) this).getBlockPos();
-//			
+//
 //			BlockState north_state = destination.getBlockState(blockPos2.down().north());
 //			BlockState south_state = destination.getBlockState(blockPos2.down().south());
 //			BlockState east_state = destination.getBlockState(blockPos2.down().west());
 //			BlockState west_state = destination.getBlockState(blockPos2.down().east());
-//			
+//
 //			//Search for timebox in cross pattern
-//			BlockState blockState = north_state.getBlock() == EymbraBlocks.PREHISTORIC_TIME_BOX ? north_state : 
-//				(south_state.getBlock() == EymbraBlocks.PREHISTORIC_TIME_BOX ? south_state : 
-//				(west_state.getBlock() == EymbraBlocks.PREHISTORIC_TIME_BOX ? west_state : 
+//			BlockState blockState = north_state.getBlock() == EymbraBlocks.PREHISTORIC_TIME_BOX ? north_state :
+//				(south_state.getBlock() == EymbraBlocks.PREHISTORIC_TIME_BOX ? south_state :
+//				(west_state.getBlock() == EymbraBlocks.PREHISTORIC_TIME_BOX ? west_state :
 //				(east_state.getBlock() == EymbraBlocks.PREHISTORIC_TIME_BOX ? east_state : null)));
-//			
-//			BlockPos blockPos = north_state.getBlock() == EymbraBlocks.PREHISTORIC_TIME_BOX ? blockPos2.down().north() : 
-//				(south_state.getBlock() == EymbraBlocks.PREHISTORIC_TIME_BOX ? blockPos2.down().south() : 
-//				(west_state.getBlock() == EymbraBlocks.PREHISTORIC_TIME_BOX ? blockPos2.down().west() : 
+//
+//			BlockPos blockPos = north_state.getBlock() == EymbraBlocks.PREHISTORIC_TIME_BOX ? blockPos2.down().north() :
+//				(south_state.getBlock() == EymbraBlocks.PREHISTORIC_TIME_BOX ? blockPos2.down().south() :
+//				(west_state.getBlock() == EymbraBlocks.PREHISTORIC_TIME_BOX ? blockPos2.down().west() :
 //				(east_state.getBlock() == EymbraBlocks.PREHISTORIC_TIME_BOX ? blockPos2.down().east() : null)));
-//			
+//
 //			if (blockState != null && blockPos != null) {
 //				TimeBoxBlock timeBlock = (TimeBoxBlock) blockState.getBlock();
-//				
+//
 //				//Turn off portal
 //				timeBlock.trigger(blockState, world, blockPos);
 //				world.setBlockState(blockPos2, Blocks.AIR.getDefaultState());
@@ -169,7 +169,7 @@ public class EntityMixin implements IEntityEymbraDimension {
 	public Vec3d getVelocity() {
 		return null;
 	}
-	
+
 	@Shadow
 	protected void tickNetherPortalCooldown() {
 	}

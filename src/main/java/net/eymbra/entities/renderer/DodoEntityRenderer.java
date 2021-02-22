@@ -12,8 +12,7 @@ import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)
 public class DodoEntityRenderer extends MobEntityRenderer<DodoEntity, DodoEntityModel<DodoEntity>> {
-	private static final Identifier _BROWN_DODO_TEXTURE = new Identifier(EymbraPrehistoric.MODID, "textures/entity/dodo/dodo_brown.png");
-	private static final Identifier _GRAY_DODO_TEXTURE = new Identifier(EymbraPrehistoric.MODID, "textures/entity/dodo/dodo_gray.png");
+	private static final Identifier _DODO_TEXTURE = new Identifier(EymbraPrehistoric.MODID, "textures/entity/dodo/dodo.png");
 	private final float scale;
 
 	public DodoEntityRenderer(EntityRenderDispatcher dispatcher) {
@@ -32,6 +31,6 @@ public class DodoEntityRenderer extends MobEntityRenderer<DodoEntity, DodoEntity
 
 	@Override
 	public Identifier getTexture(DodoEntity entity) {
-		return !entity.isBaby() ? _BROWN_DODO_TEXTURE : _GRAY_DODO_TEXTURE;
+		return _DODO_TEXTURE;
 	}
 }
