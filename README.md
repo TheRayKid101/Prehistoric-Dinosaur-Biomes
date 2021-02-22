@@ -16,6 +16,7 @@ I would like to note that I'm not the original creator of this mod. This was a m
 ## Project Members
 
 [TheRayKid101](https://github.com/TheRayKid101) - Project Owner, does everything with project
+
 The_RebelT - Project Artist, does everything with art
 
 ## Credits
