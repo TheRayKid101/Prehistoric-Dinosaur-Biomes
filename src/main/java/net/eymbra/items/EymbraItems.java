@@ -1,15 +1,16 @@
 package net.eymbra.items;
 
 import net.eymbra.blocks.EymbraBlocks;
+import net.eymbra.entities.EymbraEntities;
 import net.eymbra.food.EymbraFoodComponents;
 import net.eymbra.prehistoric.EymbraPrehistoric;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.EggItem;
 import net.minecraft.item.FoodComponents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Items;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.registry.Registry;
@@ -111,6 +112,20 @@ public class EymbraItems {
 
 	// public static final Item PREHISTORIC_SPIKED_BARK;
 
+	public static final Item HADROSAUR_SPAWN_EGG;
+
+	public static final Item DRAGONFLY_SPAWN_EGG;
+
+	public static final Item TAR_SLIME_SPAWN_EGG;
+
+	public static final Item ICHTHYOSAURUS_SPAWN_EGG;
+
+	public static final Item PACHYCEPALOSAURUS_SPAWN_EGG;
+
+	public static final Item DODO_SPAWN_EGG;
+
+	public static final Item ANKYLOSAURUS_SPAWN_EGG;
+
 	public static void init() {
 	}
 
@@ -205,5 +220,13 @@ public class EymbraItems {
 		// Any hoe item would do for this modifier
 		((IEymbraTiltedBlocks) Items.WOODEN_HOE).addTiltedBlock(EymbraBlocks.PREHISTORIC_GRASS_BLOCK, EymbraBlocks.PREHISTORIC_FARMLAND_STATE);
 		((IEymbraTiltedBlocks) Items.WOODEN_HOE).addTiltedBlock(EymbraBlocks.PREHISTORIC_DIRT_BLOCK, EymbraBlocks.PREHISTORIC_FARMLAND_STATE);
+
+		HADROSAUR_SPAWN_EGG = register("hadrosaur_spawn_egg", (new SpawnEggItem(EymbraEntities.HADROSAUR, 0xA59163, 0x980E25, (new Item.Settings()).group(EymbraPrehistoric.PREHISTORIC_GROUP))));
+		DRAGONFLY_SPAWN_EGG = register("dragonfly_spawn_egg", (new SpawnEggItem(EymbraEntities.DRAGONFLY, 0x31420F, 0x444573, (new Item.Settings()).group(EymbraPrehistoric.PREHISTORIC_GROUP))));
+		TAR_SLIME_SPAWN_EGG = register("tarslime_spawn_egg", (new SpawnEggItem(EymbraEntities.TAR_SLIME, 0x090909, 0x0D0D0D, (new Item.Settings()).group(EymbraPrehistoric.PREHISTORIC_GROUP))));
+		ICHTHYOSAURUS_SPAWN_EGG = register("ichthyosaurus_spawn_egg", (new SpawnEggItem(EymbraEntities.ICHTHYOSAURUS, 4996656, 986895, (new Item.Settings()).group(EymbraPrehistoric.PREHISTORIC_GROUP))));
+		PACHYCEPALOSAURUS_SPAWN_EGG = register("pachycepalosaurus_spawn_egg", (new SpawnEggItem(EymbraEntities.PACHYCEPALOSAURUS, 0x7F7746, 0x66472D, (new Item.Settings()).group(EymbraPrehistoric.PREHISTORIC_GROUP))));
+		DODO_SPAWN_EGG = register("dodo_spawn_egg", (new SpawnEggItem(EymbraEntities.DODO, 0x594E3E, 0xAB6720, (new Item.Settings()).group(EymbraPrehistoric.PREHISTORIC_GROUP))));
+		ANKYLOSAURUS_SPAWN_EGG = register("ankylosaurus_spawn_egg", (new SpawnEggItem(EymbraEntities.ANKYLOSAURUS, 0x4C2F1E, 0xA59163, (new Item.Settings()).group(EymbraPrehistoric.PREHISTORIC_GROUP))));
 	}
 }
