@@ -1,7 +1,6 @@
 package net.eymbra.dimensions;
 
 import java.util.OptionalLong;
-
 import net.eymbra.biomes.ThePrehistoricBiomeSource;
 import net.eymbra.prehistoric.EymbraPrehistoric;
 import net.minecraft.client.render.SkyProperties;
@@ -17,7 +16,7 @@ public class EymbraDimensions {
 	public static final Identifier THE_PREHISTORIC_ID = new Identifier(EymbraPrehistoric.MODID, "the_prehistoric");
 	public static final RegistryKey<DimensionType> THE_PREHISTORIC_REGISTRY_KEY;
 	protected static final EymbraDimensionType THE_PREHISTORIC;
-	protected static final boolean LIGHT = false;
+	protected static final boolean LIGHT = true;
 	// OptionalLong.of(13000L)
 	static {
 		THE_PREHISTORIC_REGISTRY_KEY = RegistryKey.of(Registry.DIMENSION_TYPE_KEY, new Identifier(EymbraPrehistoric.MODID, "the_prehistoric"));
@@ -27,6 +26,7 @@ public class EymbraDimensions {
 	}
 
 	public static final class PrehistoricSkyProperties extends SkyProperties {
+		@SuppressWarnings("unused")
 		private float sunHeight;
 
 		public PrehistoricSkyProperties() {
@@ -40,15 +40,15 @@ public class EymbraDimensions {
 			return color.multiply((sunHeight * 0.94F + 0.06F) * 0.8, (sunHeight * 0.94F + 0.06F) * 0.8, (sunHeight * 0.91F + 0.09F) * 0.8);
 		}
 
-//		@Override
-//		public boolean isDarkened() {
-//			return this.sunHeight <= 0;
-//		}
-//
-//		@Override
-//		public boolean shouldBrightenLighting() {
-//			return this.sunHeight > 0;
-//		}
+		// @Override
+		// public boolean isDarkened() {
+		// return this.sunHeight <= 0;
+		// }
+		//
+		// @Override
+		// public boolean shouldBrightenLighting() {
+		// return this.sunHeight > 0;
+		// }
 
 		@Override
 		public boolean useThickFog(int camX, int camY) {

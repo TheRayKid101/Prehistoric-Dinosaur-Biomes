@@ -2,7 +2,6 @@ package net.eymbra.items;
 
 import net.eymbra.entities.DodoEggEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.thrown.EggEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
