@@ -59,24 +59,9 @@
 	"item.eymbra.prehistoric_raw_ankylosaurus": "Raw Ankylosaurus",
 	"item.eymbra.prehistoric_cooked_ankylosaurus": "Cooked Ankylosaurus",
 	"item.eymbra.prehistoric_huge_dragonfly": "Huge Dragonfly",
-	"item.eymbra.hadrosaur_spawn_egg": "Paralophosaurus Spawn Egg",
-	"item.eymbra.dragonfly_spawn_egg": "Meganeura Spawn Egg",
-	"item.eymbra.tarslime_spawn_egg": "Tarslime Spawn Egg",
-	"item.eymbra.ichthyosaurus_spawn_egg": "Ichthyosaurus Spawn Egg",
-	"item.eymbra.pachycepalosaurus_spawn_egg": "Pachycepalosaurus Spawn Egg",
-	"item.eymbra.dodo_spawn_egg": "Dodo Spawn Egg",
-	"item.eymbra.ankylosaurus_spawn_egg": "Ankylosaurus Spawn Egg",
 	
 	"item.eymbra.ph_book.reference": "Contains All Crafting Recipes",
 	"item.eymbra.ph_book.reference2": "From The Pre-Historic Mod",
 	
-	"itemGroup.eymbra.prehistoric": "Prehistoric Dinosaur Biomes",
-	
-	"entity.eymbra.hadrosaur": "Paralophosaurus",
-	"entity.eymbra.dragonfly": "Meganeura",
-	"entity.eymbra.tarslime": "Tarslime",
-	"entity.eymbra.ichthyosaurus": "Ichthyosaurus",
-	"entity.eymbra.pachycepalosaurus": "Pachycepalosaurus",
-	"entity.eymbra.dodo": "Dodo",
-	"entity.eymbra.ankylosaurus": "Ankylosaurus"
+	"itemGroup.eymbra.prehistoric": "Prehistoric Dinosaur Biomes"
 }
