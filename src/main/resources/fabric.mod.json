@@ -17,6 +17,9 @@
 	"entrypoints": {
 		"main": [
 			"net.eymbra.prehistoric.EymbraPrehistoric"
+		],
+		"client": [
+			"net.eymbra.prehistoric.EymbraClientPrehistoric"
 		]
 	},
 	"mixins": [

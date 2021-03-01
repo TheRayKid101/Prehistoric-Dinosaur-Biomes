@@ -4,14 +4,12 @@
 	"package": "net.eymbra.prehistoric.mixin",
 	"compatibilityLevel": "JAVA_8",
 	"mixins": [
-		"MinecraftServerMixin",
-		"ServerPlayerEntityMixin"
+		"BiomeLayerSamplerAccessor"
 	],
 	"client": [
 		"FoliagePlacerTypeMixin",
 		"TrunkPlacerTypeMixin",
-		"DimensionTypeMixin",
-		"SkyPropertiesMixin",
+		"SkyPropertiesAccessor",
 		"HoeItemMixin",
 		"EntityMixin"
 	],

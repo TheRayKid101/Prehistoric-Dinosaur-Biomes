@@ -1,0 +1,13 @@
+{
+	"type": "eymbra:prehistoric",
+	"generator": {
+		"biome_source": {
+			"type": "eymbra:biome_source"
+		},
+		"type": "eymbra:chunk_generator",
+		"structures": {
+			"structures": {
+			}
+		}
+	}
+}

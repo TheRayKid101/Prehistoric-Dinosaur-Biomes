@@ -1,7 +1,7 @@
-package net.eymbra.entities;
+package net.eymbra.prehistoric;
 
 import net.minecraft.util.math.BlockPos;
 
-public interface IEntityEymbraDimension {
+public interface IEntityMixinAccess {
 	void setInEymbraPortal(BlockPos pos);
 }
