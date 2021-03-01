@@ -21,6 +21,7 @@ import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
@@ -62,7 +63,7 @@ public class ModifiableStairsBlock extends Block implements Waterloggable {
 	private final BlockState baseBlockState;
 
 	private static VoxelShape[] composeShapes(VoxelShape base, VoxelShape northWest, VoxelShape northEast, VoxelShape southWest, VoxelShape southEast) {
-		return (VoxelShape[]) IntStream.range(0, 16).mapToObj((i) -> {
+		return IntStream.range(0, 16).mapToObj((i) -> {
 			return composeShape(i, base, northWest, northEast, southWest, southEast);
 		}).toArray((i) -> {
 			return new VoxelShape[i];
@@ -91,41 +92,48 @@ public class ModifiableStairsBlock extends Block implements Waterloggable {
 	}
 
 	protected ModifiableStairsBlock(BlockState baseBlockState, AbstractBlock.Settings settings) {
-		super(settings);
-		this.setDefaultState((BlockState) ((BlockState) ((BlockState) ((BlockState) ((BlockState) this.stateManager.getDefaultState()).with(FACING, Direction.NORTH)).with(HALF, BlockHalf.BOTTOM)).with(SHAPE, StairShape.STRAIGHT)).with(WATERLOGGED, false));
+		super(settings.strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD));
+		this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH).with(HALF, BlockHalf.BOTTOM).with(SHAPE, StairShape.STRAIGHT).with(WATERLOGGED, false));
 		this.baseBlock = baseBlockState.getBlock();
 		this.baseBlockState = baseBlockState;
 	}
 
+	@Override
 	public boolean hasSidedTransparency(BlockState state) {
 		return true;
 	}
 
+	@Override
 	public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
 		return (state.get(HALF) == BlockHalf.TOP ? TOP_SHAPES : BOTTOM_SHAPES)[SHAPE_INDICES[this.getShapeIndexIndex(state)]];
 	}
 
 	private int getShapeIndexIndex(BlockState state) {
-		return ((StairShape) state.get(SHAPE)).ordinal() * 4 + ((Direction) state.get(FACING)).getHorizontal();
+		return state.get(SHAPE).ordinal() * 4 + state.get(FACING).getHorizontal();
 	}
 
+	@Override
 	@Environment(EnvType.CLIENT)
 	public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
 		this.baseBlock.randomDisplayTick(state, world, pos, random);
 	}
 
+	@Override
 	public void onBlockBreakStart(BlockState state, World world, BlockPos pos, PlayerEntity player) {
 		this.baseBlockState.onBlockBreakStart(world, pos, player);
 	}
 
+	@Override
 	public void onBroken(WorldAccess world, BlockPos pos, BlockState state) {
 		this.baseBlock.onBroken(world, pos, state);
 	}
 
+	@Override
 	public float getBlastResistance() {
 		return this.baseBlock.getBlastResistance();
 	}
 
+	@Override
 	public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
 		if (!state.isOf(state.getBlock())) {
 			this.baseBlockState.neighborUpdate(world, pos, Blocks.AIR, pos, false);
@@ -133,46 +141,56 @@ public class ModifiableStairsBlock extends Block implements Waterloggable {
 		}
 	}
 
+	@Override
 	public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
 		if (!state.isOf(newState.getBlock())) {
 			this.baseBlockState.onStateReplaced(world, pos, newState, moved);
 		}
 	}
 
+	@Override
 	public void onSteppedOn(World world, BlockPos pos, Entity entity) {
 		this.baseBlock.onSteppedOn(world, pos, entity);
 	}
 
+	@Override
 	public boolean hasRandomTicks(BlockState state) {
 		return this.baseBlock.hasRandomTicks(state);
 	}
 
+	@Override
 	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		this.baseBlock.randomTick(state, world, pos, random);
 	}
 
+	@Override
 	public void scheduledTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		this.baseBlock.scheduledTick(state, world, pos, random);
 	}
 
+	@Override
 	public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
 		return this.baseBlockState.onUse(world, player, hand, hit);
 	}
 
+	@Override
 	public void onDestroyedByExplosion(World world, BlockPos pos, Explosion explosion) {
 		this.baseBlock.onDestroyedByExplosion(world, pos, explosion);
 	}
 
+	@Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
 		Direction direction = ctx.getSide();
 		BlockPos blockPos = ctx.getBlockPos();
 		FluidState fluidState = ctx.getWorld().getFluidState(blockPos);
-		BlockState blockState = (BlockState) ((BlockState) ((BlockState) this.getDefaultState().with(FACING, ctx.getPlayerFacing())).with(HALF, direction != Direction.DOWN && (direction == Direction.UP || ctx.getHitPos().y - (double) blockPos.getY() <= 0.5D) ? BlockHalf.BOTTOM : BlockHalf.TOP)).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
-		return (BlockState) blockState.with(SHAPE, getStairShape(blockState, ctx.getWorld(), blockPos));
+		BlockState blockState = this.getDefaultState().with(FACING, ctx.getPlayerFacing()).with(HALF, direction != Direction.DOWN && (direction == Direction.UP || ctx.getHitPos().y - blockPos.getY() <= 0.5D) ? BlockHalf.BOTTOM : BlockHalf.TOP)
+				.with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+		return blockState.with(SHAPE, getStairShape(blockState, ctx.getWorld(), blockPos));
 	}
 
+	@Override
 	public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState newState, WorldAccess world, BlockPos pos, BlockPos posFrom) {
-		if ((Boolean) state.get(WATERLOGGED)) {
+		if (state.get(WATERLOGGED)) {
 			world.getFluidTickScheduler().schedule(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
 		}
 
@@ -180,11 +198,11 @@ public class ModifiableStairsBlock extends Block implements Waterloggable {
 	}
 
 	private static StairShape getStairShape(BlockState state, BlockView world, BlockPos pos) {
-		Direction direction = (Direction) state.get(FACING);
+		Direction direction = state.get(FACING);
 		BlockState blockState = world.getBlockState(pos.offset(direction));
 		if (isStairs(blockState) && state.get(HALF) == blockState.get(HALF)) {
-			Direction direction2 = (Direction) blockState.get(FACING);
-			if (direction2.getAxis() != ((Direction) state.get(FACING)).getAxis() && method_10678(state, world, pos, direction2.getOpposite())) {
+			Direction direction2 = blockState.get(FACING);
+			if (direction2.getAxis() != state.get(FACING).getAxis() && method_10678(state, world, pos, direction2.getOpposite())) {
 				if (direction2 == direction.rotateYCounterclockwise()) {
 					return StairShape.OUTER_LEFT;
 				}
@@ -195,8 +213,8 @@ public class ModifiableStairsBlock extends Block implements Waterloggable {
 
 		BlockState blockState2 = world.getBlockState(pos.offset(direction.getOpposite()));
 		if (isStairs(blockState2) && state.get(HALF) == blockState2.get(HALF)) {
-			Direction direction3 = (Direction) blockState2.get(FACING);
-			if (direction3.getAxis() != ((Direction) state.get(FACING)).getAxis() && method_10678(state, world, pos, direction3)) {
+			Direction direction3 = blockState2.get(FACING);
+			if (direction3.getAxis() != state.get(FACING).getAxis() && method_10678(state, world, pos, direction3)) {
 				if (direction3 == direction.rotateYCounterclockwise()) {
 					return StairShape.INNER_LEFT;
 				}
@@ -217,26 +235,28 @@ public class ModifiableStairsBlock extends Block implements Waterloggable {
 		return state.getBlock() instanceof ModifiableStairsBlock;
 	}
 
+	@Override
 	public BlockState rotate(BlockState state, BlockRotation rotation) {
-		return (BlockState) state.with(FACING, rotation.rotate((Direction) state.get(FACING)));
+		return state.with(FACING, rotation.rotate(state.get(FACING)));
 	}
 
+	@Override
 	@SuppressWarnings("incomplete-switch")
 	public BlockState mirror(BlockState state, BlockMirror mirror) {
-		Direction direction = (Direction) state.get(FACING);
-		StairShape stairShape = (StairShape) state.get(SHAPE);
+		Direction direction = state.get(FACING);
+		StairShape stairShape = state.get(SHAPE);
 		switch (mirror) {
 		case LEFT_RIGHT:
 			if (direction.getAxis() == Direction.Axis.Z) {
 				switch (stairShape) {
 				case INNER_LEFT:
-					return (BlockState) state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, StairShape.INNER_RIGHT);
+					return state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, StairShape.INNER_RIGHT);
 				case INNER_RIGHT:
-					return (BlockState) state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, StairShape.INNER_LEFT);
+					return state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, StairShape.INNER_LEFT);
 				case OUTER_LEFT:
-					return (BlockState) state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, StairShape.OUTER_RIGHT);
+					return state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, StairShape.OUTER_RIGHT);
 				case OUTER_RIGHT:
-					return (BlockState) state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, StairShape.OUTER_LEFT);
+					return state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, StairShape.OUTER_LEFT);
 				default:
 					return state.rotate(BlockRotation.CLOCKWISE_180);
 				}
@@ -246,13 +266,13 @@ public class ModifiableStairsBlock extends Block implements Waterloggable {
 			if (direction.getAxis() == Direction.Axis.X) {
 				switch (stairShape) {
 				case INNER_LEFT:
-					return (BlockState) state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, StairShape.INNER_LEFT);
+					return state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, StairShape.INNER_LEFT);
 				case INNER_RIGHT:
-					return (BlockState) state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, StairShape.INNER_RIGHT);
+					return state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, StairShape.INNER_RIGHT);
 				case OUTER_LEFT:
-					return (BlockState) state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, StairShape.OUTER_RIGHT);
+					return state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, StairShape.OUTER_RIGHT);
 				case OUTER_RIGHT:
-					return (BlockState) state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, StairShape.OUTER_LEFT);
+					return state.rotate(BlockRotation.CLOCKWISE_180).with(SHAPE, StairShape.OUTER_LEFT);
 				case STRAIGHT:
 					return state.rotate(BlockRotation.CLOCKWISE_180);
 				}
@@ -262,14 +282,17 @@ public class ModifiableStairsBlock extends Block implements Waterloggable {
 		return super.mirror(state, mirror);
 	}
 
+	@Override
 	protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
 		builder.add(FACING, HALF, SHAPE, WATERLOGGED);
 	}
 
+	@Override
 	public FluidState getFluidState(BlockState state) {
-		return (Boolean) state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
+		return state.get(WATERLOGGED) ? Fluids.WATER.getStill(false) : super.getFluidState(state);
 	}
 
+	@Override
 	public boolean canPathfindThrough(BlockState state, BlockView world, BlockPos pos, NavigationType type) {
 		return false;
 	}
@@ -291,6 +314,8 @@ public class ModifiableStairsBlock extends Block implements Waterloggable {
 		TOP_SOUTH_EAST_CORNER_SHAPE = Block.createCuboidShape(8.0D, 8.0D, 8.0D, 16.0D, 16.0D, 16.0D);
 		TOP_SHAPES = composeShapes(TOP_SHAPE, BOTTOM_NORTH_WEST_CORNER_SHAPE, BOTTOM_NORTH_EAST_CORNER_SHAPE, BOTTOM_SOUTH_WEST_CORNER_SHAPE, BOTTOM_SOUTH_EAST_CORNER_SHAPE);
 		BOTTOM_SHAPES = composeShapes(BOTTOM_SHAPE, TOP_NORTH_WEST_CORNER_SHAPE, TOP_NORTH_EAST_CORNER_SHAPE, TOP_SOUTH_WEST_CORNER_SHAPE, TOP_SOUTH_EAST_CORNER_SHAPE);
-		SHAPE_INDICES = new int[] { 12, 5, 3, 10, 14, 13, 7, 11, 13, 7, 11, 14, 8, 4, 1, 2, 4, 1, 2, 8 };
+		SHAPE_INDICES = new int[] {
+				12, 5, 3, 10, 14, 13, 7, 11, 13, 7, 11, 14, 8, 4, 1, 2, 4, 1, 2, 8
+		};
 	}
 }

@@ -1,7 +1,6 @@
 package net.eymbra.sounds;
 
 import net.eymbra.prehistoric.EymbraPrehistoric;
-import net.minecraft.client.sound.PositionedSoundInstance;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -24,10 +23,7 @@ public class EymbraSoundEvents {
 	public static final SoundEvent ANKYLOSAURUS_HURT = register("ambient.ankylosaurus.ankylosaurus_hurt");
 	public static final SoundEvent ANKYLOSAURUS_DEATH = register("ambient.ankylosaurus.ankylosaurus_death");
 
-	public static final PositionedSoundInstance TM_OPEN = PositionedSoundInstance.ambient(EymbraSoundEvents.TIME_MACHINE_OPEN);
-	public static final PositionedSoundInstance TM_CLOSE = PositionedSoundInstance.ambient(EymbraSoundEvents.TIME_MACHINE_CLOSE);
-
 	private static SoundEvent register(String id) {
-		return (SoundEvent) Registry.register(Registry.SOUND_EVENT, new Identifier(EymbraPrehistoric.MODID, id), new SoundEvent(new Identifier(EymbraPrehistoric.MODID, id)));
+		return Registry.register(Registry.SOUND_EVENT, new Identifier(EymbraPrehistoric.MODID, id), new SoundEvent(new Identifier(EymbraPrehistoric.MODID, id)));
 	}
 }

@@ -110,7 +110,7 @@ public class EymbraBiomes {
 		DefaultBiomeFeatures.addLandCarvers(builder2);
 		DefaultBiomeFeatures.addDefaultLakes(builder2);
 		DefaultBiomeFeatures.addDefaultOres(builder2);
-		builder2.feature(GenerationStep.Feature.LOCAL_MODIFICATIONS, EymbraDefaultFeatures.ROCK_PILES);
+		EymbraDefaultFeatures.addRockPiles(builder2);
 		return (new Biome.Builder()).precipitation(Biome.Precipitation.RAIN).category(Biome.Category.JUNGLE).depth(depth).scale(scale).temperature(0.95F).downfall(downfall)
 				.effects((new BiomeEffects.Builder()).particleConfig(new BiomeParticleConfig(EymbraParticles.RAINFOREST_DUST, 0.118093334F)).loopSound(EymbraSoundEvents.AMBIENCE_PREHISTORIC_RAINFOREST)
 						.additionsSound(new BiomeAdditionsSound(EymbraSoundEvents.ADDITIONAL_PREHISTORIC_RAINFOREST, 0.0011D)).waterColor(3368550).waterFogColor(3368550).fogColor(0x308753).skyColor(0x4ACE80).moodSound(BiomeMoodSound.CAVE).build())
@@ -136,7 +136,7 @@ public class EymbraBiomes {
 		DefaultBiomeFeatures.addDefaultLakes(builder2);
 		DefaultBiomeFeatures.addSwampFeatures(builder2);
 		DefaultBiomeFeatures.addDefaultOres(builder2);
-		builder2.feature(GenerationStep.Feature.LOCAL_MODIFICATIONS, EymbraDefaultFeatures.ROCK_PILES);
+		EymbraDefaultFeatures.addRockPiles(builder2);
 
 		return (new Biome.Builder()).precipitation(Biome.Precipitation.RAIN).category(Biome.Category.SWAMP).depth(depth).scale(scale).temperature(0.8F).downfall(downfall)
 				.effects((new BiomeEffects.Builder()).particleConfig(new BiomeParticleConfig(EymbraParticles.RAINFOREST_DUST, 0.118093334F)).loopSound(EymbraSoundEvents.AMBIENCE_PREHISTORIC_BOG)
@@ -200,7 +200,7 @@ public class EymbraBiomes {
 		DefaultBiomeFeatures.addSeagrassOnStone(builder2);
 		DefaultBiomeFeatures.addKelp(builder2);
 		builder2.structureFeature(ConfiguredStructureFeatures.NETHER_FOSSIL);
-		builder2.feature(GenerationStep.Feature.LOCAL_MODIFICATIONS, EymbraDefaultFeatures.ROCK_PILES);
+		EymbraDefaultFeatures.addRockPiles(builder2);
 
 		return (new Biome.Builder()).precipitation(Biome.Precipitation.RAIN).category(Biome.Category.BEACH).depth(depth).scale(scale).temperature(0.5F).downfall(0.9F)
 				.effects((new BiomeEffects.Builder()).particleConfig(new BiomeParticleConfig(EymbraParticles.RAINFOREST_DUST, 0.118093334F)).loopSound(EymbraSoundEvents.AMBIENCE_PREHISTORIC_BOG)
@@ -253,7 +253,7 @@ public class EymbraBiomes {
 		builder.spawn(SpawnGroup.AMBIENT, new SpawnSettings.SpawnEntry(EymbraEntities.DRAGONFLY, 10, 3, 6));
 		builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EymbraEntities.DODO, 6, 3, 6));
 		builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EymbraEntities.ANKYLOSAURUS, 18, 3, 6));
-		builder2.feature(GenerationStep.Feature.LOCAL_MODIFICATIONS, EymbraDefaultFeatures.ROCK_PILES);
+		EymbraDefaultFeatures.addRockPiles(builder2);
 		return (new Biome.Builder()).precipitation(Biome.Precipitation.RAIN).category(Biome.Category.EXTREME_HILLS).depth(depth).scale(scale).temperature(0.2F).downfall(downfall)
 				.effects((new BiomeEffects.Builder()).loopSound(EymbraSoundEvents.AMBIENCE_PREHISTORIC_RAINFOREST).waterColor(3368550).waterFogColor(3368550).fogColor(0x308753).skyColor(0x4ACE80).moodSound(BiomeMoodSound.CAVE).build())
 				.spawnSettings(builder.build()).generationSettings(builder2.build()).build();
@@ -280,7 +280,7 @@ public class EymbraBiomes {
 		DefaultBiomeFeatures.addDefaultOres(builder2);
 		DefaultBiomeFeatures.addSeagrassOnStone(builder2);
 		DefaultBiomeFeatures.addKelp(builder2);
-		builder2.feature(GenerationStep.Feature.LOCAL_MODIFICATIONS, EymbraDefaultFeatures.ROCK_PILES);
+		EymbraDefaultFeatures.addRockPiles(builder2);
 
 		return (new Biome.Builder()).precipitation(Biome.Precipitation.RAIN).category(Biome.Category.SWAMP).depth(depth).scale(scale).temperature(0.8F).downfall(downfall)
 				.effects((new BiomeEffects.Builder()).particleConfig(new BiomeParticleConfig(EymbraParticles.RAINFOREST_DUST, 0.118093334F)).loopSound(EymbraSoundEvents.AMBIENCE_PREHISTORIC_RAINFOREST)
@@ -303,7 +303,7 @@ public class EymbraBiomes {
 		builder.spawn(SpawnGroup.AMBIENT, new SpawnSettings.SpawnEntry(EymbraEntities.DRAGONFLY, 5, 3, 6));
 		builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EymbraEntities.DODO, 6, 3, 6));
 		builder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EymbraEntities.ANKYLOSAURUS, 16, 3, 6));
-		builder2.feature(GenerationStep.Feature.LOCAL_MODIFICATIONS, EymbraDefaultFeatures.ROCK_PILES);
+		EymbraDefaultFeatures.addRockPiles(builder2);
 		return (new Biome.Builder()).precipitation(Biome.Precipitation.RAIN).category(Biome.Category.EXTREME_HILLS).depth(depth).scale(scale).temperature(0.8F).downfall(downfall)
 				.effects((new BiomeEffects.Builder()).loopSound(EymbraSoundEvents.AMBIENCE_PREHISTORIC_RAINFOREST).waterColor(3368550).waterFogColor(3368550).fogColor(0x308753).skyColor(0x4ACE80).moodSound(BiomeMoodSound.CAVE).build())
 				.spawnSettings(builder.build()).generationSettings(builder2.build()).build();

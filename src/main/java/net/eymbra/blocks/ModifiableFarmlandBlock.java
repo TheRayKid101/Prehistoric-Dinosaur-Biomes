@@ -17,6 +17,7 @@ import net.minecraft.entity.ai.pathing.NavigationType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
@@ -35,7 +36,7 @@ public class ModifiableFarmlandBlock extends Block {
 	protected static final VoxelShape SHAPE;
 
 	protected ModifiableFarmlandBlock(AbstractBlock.Settings settings) {
-		super(settings);
+		super(settings.sounds(BlockSoundGroup.GRAVEL));
 		this.setDefaultState(this.stateManager.getDefaultState().with(MOISTURE, 0));
 	}
 
@@ -94,7 +95,8 @@ public class ModifiableFarmlandBlock extends Block {
 
 	@Override
 	public void onLandedUpon(World world, BlockPos pos, Entity entity, float distance) {
-		if (!world.isClient && world.random.nextFloat() < distance - 0.5F && entity instanceof LivingEntity && (entity instanceof PlayerEntity || world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING)) && entity.getWidth() * entity.getWidth() * entity.getHeight() > 0.512F) {
+		if (!world.isClient && world.random.nextFloat() < distance - 0.5F && entity instanceof LivingEntity && (entity instanceof PlayerEntity || world.getGameRules().getBoolean(GameRules.DO_MOB_GRIEFING))
+				&& entity.getWidth() * entity.getWidth() * entity.getHeight() > 0.512F) {
 			setToDirt(world.getBlockState(pos), world, pos);
 		}
 

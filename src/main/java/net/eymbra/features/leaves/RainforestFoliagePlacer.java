@@ -28,6 +28,7 @@ public class RainforestFoliagePlacer extends FoliagePlacer {
 		this.height = height;
 	}
 
+	@Override
 	protected void generate(ModifiableTestableWorld world, Random random, TreeFeatureConfig config, int trunkHeight, FoliagePlacer.TreeNode treeNode, int foliageHeight, int radius, Set<BlockPos> leaves, int i, BlockBox blockBox) {
 		int j = treeNode.isGiantTrunk() ? foliageHeight : 1 + random.nextInt(2);
 
@@ -61,6 +62,7 @@ public class RainforestFoliagePlacer extends FoliagePlacer {
 		return this.height;
 	}
 
+	@Override
 	protected boolean isInvalidForLeaves(Random random, int baseHeight, int dx, int dy, int dz, boolean bl) {
 		if (baseHeight + dy >= 7) {
 			return true;

@@ -4,13 +4,13 @@
 	"package": "net.eymbra.prehistoric.mixin",
 	"compatibilityLevel": "JAVA_8",
 	"mixins": [
-		"BiomeLayerSamplerAccessor"
-	],
-	"client": [
+		"BiomeLayerSamplerAccessor",
 		"FoliagePlacerTypeMixin",
 		"TrunkPlacerTypeMixin",
+		"HoeItemMixin"
+	],
+	"client": [
 		"SkyPropertiesAccessor",
-		"HoeItemMixin",
 		"EntityMixin"
 	],
 	"injectors": {

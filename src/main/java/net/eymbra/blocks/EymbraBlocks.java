@@ -22,8 +22,8 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.BlockView;
 
 public class EymbraBlocks {
-	public static final Block PREHISTORIC_TIME_BOX;
-	public static final BlockState PREHISTORIC_TIME_BOX_STATE;
+	public static final Block PREHISTORIC_TIME_BOX = new TimeBoxBlock();
+	public static final BlockState PREHISTORIC_TIME_BOX_STATE = PREHISTORIC_TIME_BOX.getDefaultState();
 
 	public static final Block PREHISTORIC_GRASS_BLOCK;
 	public static final BlockState PREHISTORIC_GRASS_BLOCK_STATE;
@@ -120,6 +120,7 @@ public class EymbraBlocks {
 	public static final Block PREHISTORIC_SPIKED_BARK;
 
 	public static void init() {
+		Registry.register(Registry.BLOCK, new Identifier(EymbraPrehistoric.MODID, "prehistoric_time_box"), PREHISTORIC_TIME_BOX);
 	}
 
 	private static Block register(String id, Block block) {
@@ -133,7 +134,8 @@ public class EymbraBlocks {
 	}
 
 	private static LeavesBlock createLeavesBlock() {
-		return new LeavesBlock(AbstractBlock.Settings.of(Material.LEAVES).strength(0.2F).ticksRandomly().sounds(BlockSoundGroup.GRASS).nonOpaque().allowsSpawning(EymbraBlocks::canSpawnOnLeaves).suffocates(EymbraBlocks::never).blockVision(EymbraBlocks::never));
+		return new LeavesBlock(
+				AbstractBlock.Settings.of(Material.LEAVES).strength(0.2F).ticksRandomly().sounds(BlockSoundGroup.GRASS).nonOpaque().allowsSpawning(EymbraBlocks::canSpawnOnLeaves).suffocates(EymbraBlocks::never).blockVision(EymbraBlocks::never));
 	}
 
 	/**
@@ -157,13 +159,10 @@ public class EymbraBlocks {
 	}
 
 	static {
-		PREHISTORIC_TIME_BOX = register("prehistoric_time_box", new TimeBoxBlock(AbstractBlock.Settings.of(Material.METAL, MaterialColor.IRON).requiresTool().strength(5.0F, 6.0F).sounds(BlockSoundGroup.METAL)));
-		PREHISTORIC_TIME_BOX_STATE = PREHISTORIC_TIME_BOX.getDefaultState();
-
-		PREHISTORIC_GRASS_BLOCK = register("prehistoric_grass_block", new ModifiableGrassBlock(AbstractBlock.Settings.of(Material.SOLID_ORGANIC).ticksRandomly().strength(0.6F).sounds(BlockSoundGroup.GRASS)));
+		PREHISTORIC_GRASS_BLOCK = register("prehistoric_grass_block", new ModifiableGrassBlock(AbstractBlock.Settings.of(Material.SOLID_ORGANIC)));
 		PREHISTORIC_GRASS_BLOCK_STATE = PREHISTORIC_GRASS_BLOCK.getDefaultState();
 
-		PREHISTORIC_DIRT_BLOCK = register("prehistoric_dirt", new Block(AbstractBlock.Settings.of(Material.SOIL, MaterialColor.DIRT).strength(0.5F).sounds(BlockSoundGroup.GRAVEL)));
+		PREHISTORIC_DIRT_BLOCK = register("prehistoric_dirt", new ModifiableDirtBlock(AbstractBlock.Settings.of(Material.SOIL, MaterialColor.DIRT)));
 		PREHISTORIC_DIRT_BLOCK_STATE = PREHISTORIC_DIRT_BLOCK.getDefaultState();
 
 		PREHISTORIC_LEPIDODENDRALES_LOG = register("prehistoric_lepidodendrales_log", createLogBlock(MaterialColor.WOOD, MaterialColor.SPRUCE));
@@ -172,14 +171,14 @@ public class EymbraBlocks {
 		PREHISTORIC_LEPIDODENDRALES_LEAVES = register("prehistoric_lepidodendrales_leaves", createLeavesBlock());
 		PREHISTORIC_LEPIDODENDRALES_LEAVES_STATE = PREHISTORIC_LEPIDODENDRALES_LEAVES.getDefaultState();
 
-		PREHISTORIC_LEPIDODENDRALES_SAPLING = register("prehistoric_lepidodendrales_sapling", new ModifiedSaplingBlock(new LepidodendralesSaplingGenerator(), AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS)));
+		PREHISTORIC_LEPIDODENDRALES_SAPLING = register("prehistoric_lepidodendrales_sapling", new ModifiedSaplingBlock(new LepidodendralesSaplingGenerator(), AbstractBlock.Settings.of(Material.PLANT)));
 
-		PREHISTORIC_MANGROVE_SAPLING = register("prehistoric_mangrove_sapling", new ModifiedSaplingBlock(new MangroveSaplingGenerator(), AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS)));
+		PREHISTORIC_MANGROVE_SAPLING = register("prehistoric_mangrove_sapling", new ModifiedSaplingBlock(new MangroveSaplingGenerator(), AbstractBlock.Settings.of(Material.PLANT)));
 
-		PREHISTORIC_SHORT_BUSH = register("prehistoric_short_bush", new ModifiablePlantBlock(AbstractBlock.Settings.of(Material.REPLACEABLE_PLANT).noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS)));
+		PREHISTORIC_SHORT_BUSH = register("prehistoric_short_bush", new ModifiablePlantBlock(AbstractBlock.Settings.of(Material.REPLACEABLE_PLANT)));
 		PREHISTORIC_SHORT_BUSH_STATE = PREHISTORIC_SHORT_BUSH.getDefaultState();
 
-		PREHISTORIC_DEAD_BUSH = register("prehistoric_dead_bush", new ModifiablePlantBlock(AbstractBlock.Settings.of(Material.REPLACEABLE_PLANT).noCollision().breakInstantly().sounds(BlockSoundGroup.GRASS)));
+		PREHISTORIC_DEAD_BUSH = register("prehistoric_dead_bush", new ModifiablePlantBlock(AbstractBlock.Settings.of(Material.REPLACEABLE_PLANT)));
 		PREHISTORIC_DEAD_BUSH_STATE = PREHISTORIC_DEAD_BUSH.getDefaultState();
 
 		PREHISTORIC_MANGROVE_LOG = register("prehistoric_mangrove_log", createLogBlock(MaterialColor.WOOD, MaterialColor.SPRUCE));
@@ -188,7 +187,7 @@ public class EymbraBlocks {
 		PREHISTORIC_MANGROVE_LEAVES = register("prehistoric_mangrove_leaves", createLeavesBlock());
 		PREHISTORIC_MANGROVE_LEAVES_STATE = PREHISTORIC_MANGROVE_LEAVES.getDefaultState();
 
-		PREHISTORIC_PORTAL_BLOCK = register("prehistoric_portal", new PrehistoricPortalBlock(AbstractBlock.Settings.of(Material.PORTAL).noCollision().ticksRandomly().strength(-1.0F).sounds(BlockSoundGroup.GLASS).luminance((state) -> {
+		PREHISTORIC_PORTAL_BLOCK = register("prehistoric_portal", new PrehistoricPortalBlock(AbstractBlock.Settings.of(Material.PORTAL).noCollision().ticksRandomly().strength(-1.0F).luminance((state) -> {
 			return 11;
 		})));
 		PREHISTORIC_PORTAL_BLOCK_STATE = PREHISTORIC_PORTAL_BLOCK.getDefaultState();
@@ -205,15 +204,15 @@ public class EymbraBlocks {
 		PREHISTORIC_DARKWOOD_LEAVES = register("prehistoric_darkwood_leaves", createLeavesBlock());
 		PREHISTORIC_DARKWOOD_LEAVES_STATE = PREHISTORIC_DARKWOOD_LEAVES.getDefaultState();
 
-		PREHISTORIC_DARKWOOD_SAPLING = register("prehistoric_darkwood_sapling", new ModifiedSaplingBlock(new DarkwoodSaplingGenerator(), AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS)));
+		PREHISTORIC_DARKWOOD_SAPLING = register("prehistoric_darkwood_sapling", new ModifiedSaplingBlock(new DarkwoodSaplingGenerator(), AbstractBlock.Settings.of(Material.PLANT)));
 
-		PREHISTORIC_LEPIDODENDRALES_PLANKS = register("prehistoric_lepidodendrales_planks", new Block(AbstractBlock.Settings.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
+		PREHISTORIC_LEPIDODENDRALES_PLANKS = register("prehistoric_lepidodendrales_planks", new ModifiablePlankBlock(AbstractBlock.Settings.of(Material.WOOD, MaterialColor.WOOD)));
 		PREHISTORIC_LEPIDODENDRALES_PLANKS_STATE = PREHISTORIC_LEPIDODENDRALES_PLANKS.getDefaultState();
 
-		PREHISTORIC_MANGROVE_PLANKS = register("prehistoric_mangrove_planks", new Block(AbstractBlock.Settings.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
+		PREHISTORIC_MANGROVE_PLANKS = register("prehistoric_mangrove_planks", new ModifiablePlankBlock(AbstractBlock.Settings.of(Material.WOOD, MaterialColor.WOOD)));
 		PREHISTORIC_MANGROVE_PLANKS_STATE = PREHISTORIC_MANGROVE_PLANKS.getDefaultState();
 
-		PREHISTORIC_DARKWOOD_PLANKS = register("prehistoric_darkwood_planks", new Block(AbstractBlock.Settings.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
+		PREHISTORIC_DARKWOOD_PLANKS = register("prehistoric_darkwood_planks", new ModifiablePlankBlock(AbstractBlock.Settings.of(Material.WOOD, MaterialColor.WOOD)));
 		PREHISTORIC_DARKWOOD_PLANKS_STATE = PREHISTORIC_DARKWOOD_PLANKS.getDefaultState();
 
 		PREHISTORIC_LEPIDODENDRALES_STAIRS = register("prehistoric_lepidodendrales_stairs", new ModifiableStairsBlock(PREHISTORIC_LEPIDODENDRALES_PLANKS_STATE, AbstractBlock.Settings.copy(PREHISTORIC_LEPIDODENDRALES_PLANKS)));
@@ -225,35 +224,35 @@ public class EymbraBlocks {
 		PREHISTORIC_DARKWOOD_STAIRS = register("prehistoric_darkwood_stairs", new ModifiableStairsBlock(PREHISTORIC_DARKWOOD_PLANKS_STATE, AbstractBlock.Settings.copy(PREHISTORIC_DARKWOOD_PLANKS)));
 		PREHISTORIC_DARKWOOD_STAIRS_STATE = PREHISTORIC_DARKWOOD_STAIRS.getDefaultState();
 
-		PREHISTORIC_LEPIDODENDRALES_SLAB = register("prehistoric_lepidodendrales_slab", new SlabBlock(AbstractBlock.Settings.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
+		PREHISTORIC_LEPIDODENDRALES_SLAB = register("prehistoric_lepidodendrales_slab", new SlabBlock(AbstractBlock.Settings.of(Material.WOOD, MaterialColor.WOOD)));
 		PREHISTORIC_LEPIDODENDRALES_SLAB_STATE = PREHISTORIC_LEPIDODENDRALES_SLAB.getDefaultState();
 
-		PREHISTORIC_MANGROVE_SLAB = register("prehistoric_mangrove_slab", new SlabBlock(AbstractBlock.Settings.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
+		PREHISTORIC_MANGROVE_SLAB = register("prehistoric_mangrove_slab", new ModifiableSlabBlock(AbstractBlock.Settings.of(Material.WOOD, MaterialColor.WOOD)));
 		PREHISTORIC_MANGROVE_SLAB_STATE = PREHISTORIC_MANGROVE_SLAB.getDefaultState();
 
-		PREHISTORIC_DARKWOOD_SLAB = register("prehistoric_darkwood_slab", new SlabBlock(AbstractBlock.Settings.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
+		PREHISTORIC_DARKWOOD_SLAB = register("prehistoric_darkwood_slab", new ModifiableSlabBlock(AbstractBlock.Settings.of(Material.WOOD, MaterialColor.WOOD)));
 		PREHISTORIC_DARKWOOD_SLAB_STATE = PREHISTORIC_DARKWOOD_SLAB.getDefaultState();
 
 		PREHISTORIC_CALAMITES_LOG = register("prehistoric_calamites_log", createLogBlock(MaterialColor.WOOD, MaterialColor.SPRUCE));
 		PREHISTORIC_CALAMITES_LOG_STATE = PREHISTORIC_CALAMITES_LOG.getDefaultState();
 
-		PREHISTORIC_CALAMITES_PLANKS = register("prehistoric_calamites_planks", new Block(AbstractBlock.Settings.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
+		PREHISTORIC_CALAMITES_PLANKS = register("prehistoric_calamites_planks", new ModifiablePlankBlock(AbstractBlock.Settings.of(Material.WOOD, MaterialColor.WOOD)));
 		PREHISTORIC_CALAMITES_PLANKS_STATE = PREHISTORIC_CALAMITES_PLANKS.getDefaultState();
 
 		PREHISTORIC_CALAMITES_STAIRS = register("prehistoric_calamites_stairs", new ModifiableStairsBlock(PREHISTORIC_CALAMITES_PLANKS_STATE, AbstractBlock.Settings.copy(PREHISTORIC_CALAMITES_PLANKS)));
 		PREHISTORIC_CALAMITES_STAIRS_STATE = PREHISTORIC_CALAMITES_STAIRS.getDefaultState();
 
-		PREHISTORIC_CALAMITES_SLAB = register("prehistoric_calamites_slab", new SlabBlock(AbstractBlock.Settings.of(Material.WOOD, MaterialColor.WOOD).strength(2.0F, 3.0F).sounds(BlockSoundGroup.WOOD)));
+		PREHISTORIC_CALAMITES_SLAB = register("prehistoric_calamites_slab", new ModifiableSlabBlock(AbstractBlock.Settings.of(Material.WOOD, MaterialColor.WOOD)));
 		PREHISTORIC_CALAMITES_SLAB_STATE = PREHISTORIC_CALAMITES_SLAB.getDefaultState();
 
 		PREHISTORIC_CALAMITES_LEAVES = register("prehistoric_calamites_leaves", createLeavesBlock());
 		PREHISTORIC_CALAMITES_LEAVES_STATE = PREHISTORIC_CALAMITES_LEAVES.getDefaultState();
 
-		PREHISTORIC_CALAMITES_SAPLING = register("prehistoric_calamites_sapling", new ModifiedSaplingBlock(new CalamitesSaplingGenerator(), AbstractBlock.Settings.of(Material.PLANT).noCollision().ticksRandomly().breakInstantly().sounds(BlockSoundGroup.GRASS)));
+		PREHISTORIC_CALAMITES_SAPLING = register("prehistoric_calamites_sapling", new ModifiedSaplingBlock(new CalamitesSaplingGenerator(), AbstractBlock.Settings.of(Material.PLANT)));
 
-		PREHISTORIC_FARMLAND = register("prehistoric_farmland", new ModifiableFarmlandBlock(AbstractBlock.Settings.of(Material.SOIL).ticksRandomly().strength(0.6F).sounds(BlockSoundGroup.GRAVEL).blockVision(EymbraBlocks::always).suffocates(EymbraBlocks::always)));
+		PREHISTORIC_FARMLAND = register("prehistoric_farmland", new ModifiableFarmlandBlock(AbstractBlock.Settings.of(Material.SOIL).ticksRandomly().strength(0.6F).blockVision(EymbraBlocks::always).suffocates(EymbraBlocks::always)));
 		PREHISTORIC_FARMLAND_STATE = PREHISTORIC_FARMLAND.getDefaultState();
 
-		PREHISTORIC_SPIKED_BARK = register("prehistoric_spiked_bark", new SpikedBarkBlock(AbstractBlock.Settings.of(Material.PLANT, MaterialColor.BROWN).strength(0.4F).sounds(BlockSoundGroup.WOOD).nonOpaque()));
+		PREHISTORIC_SPIKED_BARK = register("prehistoric_spiked_bark", new SpikedBarkBlock(AbstractBlock.Settings.of(Material.PLANT, MaterialColor.BROWN).strength(0.4F).nonOpaque()));
 	}
 }

@@ -1,19 +1,16 @@
 package net.eymbra.features.trees;
 
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
-
 import com.google.common.collect.ImmutableList;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
 import net.eymbra.blocks.EymbraBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockBox;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.ModifiableTestableWorld;
 import net.minecraft.world.TestableWorld;
 import net.minecraft.world.gen.feature.TreeFeature;
@@ -30,7 +27,7 @@ public class PrehistoricGiantTrunkPlacer extends TrunkPlacer {
 	public PrehistoricGiantTrunkPlacer(int i, int j, int k) {
 		super(i, j, k);
 	}
-	
+
 	private static boolean override_method_27403(TestableWorld testableWorld, BlockPos blockPos) {
 		return testableWorld.testBlockState(blockPos, (blockState) -> {
 			Block block = blockState.getBlock();
@@ -41,13 +38,14 @@ public class PrehistoricGiantTrunkPlacer extends TrunkPlacer {
 	public static boolean isSoil(Block block) {
 		return block == Blocks.DIRT || block == Blocks.GRASS_BLOCK || block == Blocks.PODZOL || block == Blocks.COARSE_DIRT || block == Blocks.MYCELIUM || block == EymbraBlocks.PREHISTORIC_GRASS_BLOCK || block == EymbraBlocks.PREHISTORIC_DIRT_BLOCK;
 	}
-	
+
 	protected static void override_method_27400(ModifiableTestableWorld modifiableTestableWorld, BlockPos blockPos) {
 		if (!override_method_27403(modifiableTestableWorld, blockPos)) {
 			TreeFeature.setBlockStateWithoutUpdatingNeighbors(modifiableTestableWorld, blockPos, EymbraBlocks.PREHISTORIC_DIRT_BLOCK_STATE);
 		}
 	}
 
+	@Override
 	public List<FoliagePlacer.TreeNode> generate(ModifiableTestableWorld world, Random random, int trunkHeight, BlockPos pos, Set<BlockPos> set, BlockBox blockBox, TreeFeatureConfig treeFeatureConfig) {
 		BlockPos blockPos = pos.down();
 		override_method_27400(world, blockPos);
@@ -97,9 +95,9 @@ public class PrehistoricGiantTrunkPlacer extends TrunkPlacer {
 
 		return ImmutableList.of(new FoliagePlacer.TreeNode(pos.up(trunkHeight), 0, true));
 	}
-	
+
 	private static void method_27399(ModifiableTestableWorld modifiableTestableWorld, Random random, BlockPos.Mutable mutable, Set<BlockPos> set, BlockBox blockBox, TreeFeatureConfig treeFeatureConfig, BlockPos blockPos, int i, int j, int k) {
-		mutable.set((Vec3i) blockPos, i, j, k);
+		mutable.set(blockPos, i, j, k);
 		trySetState(modifiableTestableWorld, random, mutable, set, blockBox, treeFeatureConfig);
 	}
 

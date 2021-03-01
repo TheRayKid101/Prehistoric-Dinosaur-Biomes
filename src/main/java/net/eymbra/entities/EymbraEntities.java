@@ -1,14 +1,6 @@
 package net.eymbra.entities;
 
-import net.eymbra.entities.renderer.AnkylosaurusEntityRenderer;
-import net.eymbra.entities.renderer.DodoEntityRenderer;
-import net.eymbra.entities.renderer.DragonflyEntityRenderer;
-import net.eymbra.entities.renderer.HadrosaurEntityRenderer;
-import net.eymbra.entities.renderer.IchthyosaurusEntityRenderer;
-import net.eymbra.entities.renderer.PachycepalosaurusEntityRenderer;
-import net.eymbra.entities.renderer.TarSlimeEntityRenderer;
 import net.eymbra.prehistoric.EymbraPrehistoric;
-import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.fabricmc.fabric.mixin.object.builder.SpawnRestrictionAccessor;
@@ -37,36 +29,21 @@ public class EymbraEntities {
 	public static final EntityType<AnkylosaurusEntity> ANKYLOSAURUS = Registry.register(Registry.ENTITY_TYPE, new Identifier(EymbraPrehistoric.MODID, "ankylosaurus"),
 			FabricEntityTypeBuilder.create(SpawnGroup.CREATURE, AnkylosaurusEntity::new).dimensions(EntityDimensions.fixed(2.45F, 2.25F)).build());
 
-	static {
-		FabricDefaultAttributeRegistry.register(HADROSAUR, HadrosaurEntity.createHadrosaurAttributes());
-		EntityRendererRegistry.INSTANCE.register(HADROSAUR, (entityRenderDispatcher, context) -> new HadrosaurEntityRenderer(entityRenderDispatcher));
-		SpawnRestrictionAccessor.callRegister(HADROSAUR, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canMobSpawn);
-
-		FabricDefaultAttributeRegistry.register(DRAGONFLY, DragonflyEntity.createDragonflyAttributes());
-		EntityRendererRegistry.INSTANCE.register(DRAGONFLY, (entityRenderDispatcher, context) -> new DragonflyEntityRenderer(entityRenderDispatcher));
-		SpawnRestrictionAccessor.callRegister(DRAGONFLY, SpawnRestriction.Location.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canMobSpawn);
-
-		FabricDefaultAttributeRegistry.register(TAR_SLIME, TarSlimeEntity.createTarSlimeAttributes());
-		EntityRendererRegistry.INSTANCE.register(TAR_SLIME, (entityRenderDispatcher, context) -> new TarSlimeEntityRenderer(entityRenderDispatcher));
-		SpawnRestrictionAccessor.callRegister(TAR_SLIME, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canMobSpawn);
-
-		FabricDefaultAttributeRegistry.register(ICHTHYOSAURUS, IchthyosaurusEntity.createIchthyosaurusAttributes());
-		EntityRendererRegistry.INSTANCE.register(ICHTHYOSAURUS, (entityRenderDispatcher, context) -> new IchthyosaurusEntityRenderer(entityRenderDispatcher));
-		SpawnRestrictionAccessor.callRegister(ICHTHYOSAURUS, SpawnRestriction.Location.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canMobSpawn);
-
-		FabricDefaultAttributeRegistry.register(PACHYCEPALOSAURUS, PachycepalosaurusEntity.createPachycepalosaurusAttributes());
-		EntityRendererRegistry.INSTANCE.register(PACHYCEPALOSAURUS, (entityRenderDispatcher, context) -> new PachycepalosaurusEntityRenderer(entityRenderDispatcher));
-		SpawnRestrictionAccessor.callRegister(PACHYCEPALOSAURUS, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canMobSpawn);
-
-		FabricDefaultAttributeRegistry.register(DODO, DodoEntity.createDodoAttributes());
-		EntityRendererRegistry.INSTANCE.register(DODO, (entityRenderDispatcher, context) -> new DodoEntityRenderer(entityRenderDispatcher));
-		SpawnRestrictionAccessor.callRegister(DODO, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canMobSpawn);
-
-		FabricDefaultAttributeRegistry.register(ANKYLOSAURUS, AnkylosaurusEntity.createAnkylosaursAttributes());
-		EntityRendererRegistry.INSTANCE.register(ANKYLOSAURUS, (entityRenderDispatcher, context) -> new AnkylosaurusEntityRenderer(entityRenderDispatcher));
-		SpawnRestrictionAccessor.callRegister(ANKYLOSAURUS, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canMobSpawn);
-	}
-
 	public static void init() {
+		FabricDefaultAttributeRegistry.register(HADROSAUR, HadrosaurEntity.createHadrosaurAttributes());
+		FabricDefaultAttributeRegistry.register(DRAGONFLY, DragonflyEntity.createDragonflyAttributes());
+		FabricDefaultAttributeRegistry.register(TAR_SLIME, TarSlimeEntity.createTarSlimeAttributes());
+		FabricDefaultAttributeRegistry.register(ICHTHYOSAURUS, IchthyosaurusEntity.createIchthyosaurusAttributes());
+		FabricDefaultAttributeRegistry.register(PACHYCEPALOSAURUS, PachycepalosaurusEntity.createPachycepalosaurusAttributes());
+		FabricDefaultAttributeRegistry.register(DODO, DodoEntity.createDodoAttributes());
+		FabricDefaultAttributeRegistry.register(ANKYLOSAURUS, AnkylosaurusEntity.createAnkylosaursAttributes());
+
+		SpawnRestrictionAccessor.callRegister(HADROSAUR, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canMobSpawn);
+		SpawnRestrictionAccessor.callRegister(DRAGONFLY, SpawnRestriction.Location.NO_RESTRICTIONS, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canMobSpawn);
+		SpawnRestrictionAccessor.callRegister(TAR_SLIME, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canMobSpawn);
+		SpawnRestrictionAccessor.callRegister(ICHTHYOSAURUS, SpawnRestriction.Location.IN_WATER, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canMobSpawn);
+		SpawnRestrictionAccessor.callRegister(PACHYCEPALOSAURUS, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canMobSpawn);
+		SpawnRestrictionAccessor.callRegister(DODO, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canMobSpawn);
+		SpawnRestrictionAccessor.callRegister(ANKYLOSAURUS, SpawnRestriction.Location.ON_GROUND, Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, MobEntity::canMobSpawn);
 	}
 }

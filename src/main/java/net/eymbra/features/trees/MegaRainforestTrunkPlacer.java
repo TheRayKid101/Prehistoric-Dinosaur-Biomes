@@ -24,6 +24,7 @@ public class MegaRainforestTrunkPlacer extends PrehistoricGiantTrunkPlacer {
 		super(i, j, k);
 	}
 
+	@Override
 	public List<FoliagePlacer.TreeNode> generate(ModifiableTestableWorld world, Random random, int trunkHeight, BlockPos pos, Set<BlockPos> set, BlockBox blockBox, TreeFeatureConfig treeFeatureConfig) {
 		List<FoliagePlacer.TreeNode> list = Lists.newArrayList();
 		list.addAll(super.generate(world, random, trunkHeight, pos, set, blockBox, treeFeatureConfig));
@@ -34,8 +35,8 @@ public class MegaRainforestTrunkPlacer extends PrehistoricGiantTrunkPlacer {
 			int k = 0;
 
 			for (int l = 0; l < 5; ++l) {
-				j = (int) (1.5F + MathHelper.cos(f) * (float) l);
-				k = (int) (1.5F + MathHelper.sin(f) * (float) l);
+				j = (int) (1.5F + MathHelper.cos(f) * l);
+				k = (int) (1.5F + MathHelper.sin(f) * l);
 				BlockPos blockPos = pos.add(j, i - 3 + l / 2, k);
 				getAndSetState(world, random, blockPos, set, blockBox, treeFeatureConfig);
 			}

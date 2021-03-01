@@ -1,16 +1,13 @@
 package net.eymbra.features.trees;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.OptionalInt;
 import java.util.Random;
 import java.util.Set;
-
-import com.google.common.collect.Lists;
-import com.google.common.collect.Sets;
-import com.mojang.serialization.Codec;
-
 import net.eymbra.blocks.EymbraBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -37,8 +34,8 @@ import net.minecraft.world.gen.feature.TreeFeatureConfig;
 import net.minecraft.world.gen.foliage.FoliagePlacer;
 
 public class PrehistoricTreeFeature extends Feature<TreeFeatureConfig> {
-	public PrehistoricTreeFeature(Codec<TreeFeatureConfig> codec) {
-		super(codec);
+	public PrehistoricTreeFeature() {
+		super(TreeFeatureConfig.CODEC);
 	}
 
 	public static boolean canTreeReplace(TestableWorld world, BlockPos pos) {
@@ -129,7 +126,7 @@ public class PrehistoricTreeFeature extends Feature<TreeFeatureConfig> {
 
 					for (int u = -t; u <= t; ++u) {
 						for (int v = -t; v <= t; ++v) {
-							mutable.set((Vec3i) blockPos2, u, s, v);
+							mutable.set(blockPos2, u, s, v);
 							if (!canTreeReplace(world, mutable) || !config.ignoreVines && isVine(world, mutable)) {
 								if (!optionalInt.isPresent() || s - 1 < optionalInt.getAsInt() + 1) {
 									return false;
@@ -154,24 +151,26 @@ public class PrehistoricTreeFeature extends Feature<TreeFeatureConfig> {
 		}
 	}
 
+	@Override
 	protected void setBlockState(ModifiableWorld world, BlockPos pos, BlockState state) {
 		setBlockStateWithoutUpdatingNeighbors(world, pos, state);
 	}
-	
-	public boolean generate(StructureWorldAccess structureAccessor, ChunkGenerator chunkGenerator, Random random, BlockPos blockPos, TreeFeatureConfig treeFeatureConfig) {
+
+	@Override
+	public boolean generate(StructureWorldAccess structureAccessor, ChunkGenerator chunkGenerator, Random random, BlockPos blockPos, TreeFeatureConfig PrehistoricTreeFeatureConfig) {
 		Set<BlockPos> set = Sets.newHashSet();
 		Set<BlockPos> set2 = Sets.newHashSet();
 		Set<BlockPos> set3 = Sets.newHashSet();
 		BlockBox blockBox = BlockBox.empty();
-		boolean bl = this.generate(structureAccessor, random, blockPos, set, set2, blockBox, treeFeatureConfig);
+		boolean bl = this.generate(structureAccessor, random, blockPos, set, set2, blockBox, PrehistoricTreeFeatureConfig);
 		if (blockBox.minX <= blockBox.maxX && bl && !set.isEmpty()) {
-			if (!treeFeatureConfig.decorators.isEmpty()) {
+			if (!PrehistoricTreeFeatureConfig.decorators.isEmpty()) {
 				List<BlockPos> list = Lists.newArrayList(set);
 				List<BlockPos> list2 = Lists.newArrayList(set2);
 				list.sort(Comparator.comparingInt(Vec3i::getY));
 				list2.sort(Comparator.comparingInt(Vec3i::getY));
-				treeFeatureConfig.decorators.forEach((decorator) -> {
-					decorator.generate((StructureWorldAccess) structureAccessor, random, list, list2, set3, blockBox);
+				PrehistoricTreeFeatureConfig.decorators.forEach((decorator) -> {
+					decorator.generate(structureAccessor, random, list, list2, set3, blockBox);
 				});
 			}
 
@@ -183,7 +182,9 @@ public class PrehistoricTreeFeature extends Feature<TreeFeatureConfig> {
 		}
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({
+			"rawtypes", "unchecked"
+	})
 	private VoxelSet placeLogsAndLeaves(WorldAccess world, BlockBox box, Set<BlockPos> logs, Set<BlockPos> leaves) {
 		List<Set<BlockPos>> list = Lists.newArrayList();
 		VoxelSet voxelSet = new BitSetVoxelSet(box.getBlockCountX(), box.getBlockCountY(), box.getBlockCountZ());
@@ -221,7 +222,7 @@ public class PrehistoricTreeFeature extends Feature<TreeFeatureConfig> {
 					BlockState blockState = world.getBlockState(mutable);
 					if (blockState.contains(Properties.DISTANCE_1_7)) {
 						((Set) list.get(0)).add(mutable.toImmutable());
-						setBlockStateWithoutUpdatingNeighbors(world, mutable, (BlockState) blockState.with(Properties.DISTANCE_1_7, 1));
+						setBlockStateWithoutUpdatingNeighbors(world, mutable, blockState.with(Properties.DISTANCE_1_7, 1));
 						if (box.contains(mutable)) {
 							voxelSet.set(mutable.getX() - box.minX, mutable.getY() - box.minY, mutable.getZ() - box.minZ, true, true);
 						}
@@ -231,8 +232,8 @@ public class PrehistoricTreeFeature extends Feature<TreeFeatureConfig> {
 		}
 
 		for (int k = 1; k < 6; ++k) {
-			Set<BlockPos> set = (Set) list.get(k - 1);
-			Set<BlockPos> set2 = (Set) list.get(k);
+			Set<BlockPos> set = list.get(k - 1);
+			Set<BlockPos> set2 = list.get(k);
 			Iterator var25 = set.iterator();
 
 			while (var25.hasNext()) {
@@ -250,9 +251,9 @@ public class PrehistoricTreeFeature extends Feature<TreeFeatureConfig> {
 					if (!set.contains(mutable) && !set2.contains(mutable)) {
 						BlockState blockState2 = world.getBlockState(mutable);
 						if (blockState2.contains(Properties.DISTANCE_1_7)) {
-							int l = (Integer) blockState2.get(Properties.DISTANCE_1_7);
+							int l = blockState2.get(Properties.DISTANCE_1_7);
 							if (l > k + 1) {
-								BlockState blockState3 = (BlockState) blockState2.with(Properties.DISTANCE_1_7, k + 1);
+								BlockState blockState3 = blockState2.with(Properties.DISTANCE_1_7, k + 1);
 								setBlockStateWithoutUpdatingNeighbors(world, mutable, blockState3);
 								if (box.contains(mutable)) {
 									voxelSet.set(mutable.getX() - box.minX, mutable.getY() - box.minY, mutable.getZ() - box.minZ, true, true);
@@ -268,9 +269,11 @@ public class PrehistoricTreeFeature extends Feature<TreeFeatureConfig> {
 
 		return voxelSet;
 	}
-//
-//	@Override
-//	public boolean generate(StructureWorldAccess world, ChunkGenerator chunkGenerator, Random random, BlockPos pos, TreeFeatureConfig config) {
-//		return false;
-//	}
+
+	// @Override
+	// public boolean generate(StructureWorldAccess world, ChunkGenerator
+	// chunkGenerator, Random random, BlockPos pos, TreeFeatureConfig
+	// config) {
+	// return false;
+	// }
 }

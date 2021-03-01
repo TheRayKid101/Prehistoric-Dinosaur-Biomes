@@ -2,7 +2,6 @@ package net.eymbra.features;
 
 import java.util.Iterator;
 import java.util.Random;
-import com.mojang.serialization.Codec;
 import net.eymbra.blocks.EymbraBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
@@ -12,10 +11,11 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.SingleStateFeatureConfig;
 
 public class RockPileFeature extends Feature<SingleStateFeatureConfig> {
-	public RockPileFeature(Codec<SingleStateFeatureConfig> codec) {
-		super(codec);
+	public RockPileFeature() {
+		super(SingleStateFeatureConfig.CODEC);
 	}
 
+	@Override
 	@SuppressWarnings("rawtypes")
 	public boolean generate(StructureWorldAccess structureWorldAccess, ChunkGenerator chunkGenerator, Random random, BlockPos blockPos, SingleStateFeatureConfig singleStateFeatureConfig) {
 		for (; blockPos.getY() > 3; blockPos = blockPos.down()) {
@@ -34,12 +34,12 @@ public class RockPileFeature extends Feature<SingleStateFeatureConfig> {
 				int j = random.nextInt(2);
 				int k = random.nextInt(2);
 				int l = random.nextInt(2);
-				float f = (float) (j + k + l) * 0.333F + 0.5F;
+				float f = (j + k + l) * 0.333F + 0.5F;
 				Iterator var11 = BlockPos.iterate(blockPos.add(-j, -k, -l), blockPos.add(j, k, l)).iterator();
 
 				while (var11.hasNext()) {
 					BlockPos blockPos2 = (BlockPos) var11.next();
-					if (blockPos2.getSquaredDistance(blockPos) <= (double) (f * f)) {
+					if (blockPos2.getSquaredDistance(blockPos) <= f * f) {
 						structureWorldAccess.setBlockState(blockPos2, singleStateFeatureConfig.state, 4);
 					}
 				}
